@@ -1,0 +1,26 @@
+<nav class="p-6 sticky top-0">
+    <a class="mb-6" href="/">
+        <img src="/assets/logo.png" alt="Kequapp Logo" class="w-28">
+    </a>
+    {{#categories}}
+        <h3 class="font-bold text-lg mt-4 mb-2">{{name}}</h3>
+        <ul>
+            {{#items}}
+                {{#active}}
+                    <li>
+                        <a href="{{{url}}}" class="text-green-600 font-medium w-full block py-1">
+                            {{title}}
+                        </a>
+                    </li>
+                {{/active}}
+                {{^active}}
+                    <li>
+                        <a href="{{{url}}}" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            {{title}}
+                        </a>
+                    </li>
+                {{/active}}
+            {{/items}}
+        </ul>
+    {{/categories}}
+</nav>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - Kequapp Documentation</title>
+    <link href="/assets/style.css" rel="stylesheet">
+</head>
+
+<body class="flex flex-col min-h-full bg-gray-100">
+    <header class="bg-green-600 text-white p-4 shadow-md">
+        <div class="container mx-auto max-w-7xl flex justify-between items-center">
+            <div class="flex items-center space-x-4 pl-2">
+                <div class="flex flex-col">
+                    <p class="text-sm italic">\ `hek-yü-ap \</p>
+                    <span class="text-xs">Version: 0.7.0</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-8">
+                <div class="flex items-center space-x-2">
+                    <a href="https://github.com/Kequc/kequapp" target="_blank" rel="noopener noreferrer" class="text-white hover:text-green-200 block p-2" title="GitHub">
+                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                        </svg>
+                    </a>
+                    <a href="https://www.npmjs.com/package/kequapp" target="_blank" rel="noopener noreferrer" class="text-white hover:text-green-200 block p-2" title="Npm">
+                        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331zM10.665 10H12v2.667h-1.335V10z" />
+                        </svg>
+                    </a>
+                </div>
+                <div id="search-container" class="relative w-64">
+                    <input type="text" id="search-input" placeholder="Search..." class="w-full px-4 py-2 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <ul id="search-results" class="absolute z-10 w-full mt-1 bg-white rounded-md shadow-lg max-h-60 overflow-auto hidden"></ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="flex-grow container mx-auto max-w-7xl flex">
+        <aside class="w-72 bg-white shadow-md">
+            <nav class="p-6 sticky top-0">
+                <a class="mb-6" href="/">
+                    <img src="/assets/logo.png" alt="Kequapp Logo" class="w-28">
+                </a>
+                <h3 class="font-bold text-lg mt-4 mb-2">Docs</h3>
+                <ul>
+                    <li>
+                        <a href="/docs/basic-concepts.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            Basic Concepts
+                        </a>
+                    </li>
+                </ul>
+                <h3 class="font-bold text-lg mt-4 mb-2">Getting Started</h3>
+                <ul>
+                    <li>
+                        <a href="/getting-started/installation.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            Installation
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/getting-started/hello-world-example.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            Hello World Example
+                        </a>
+                    </li>
+                </ul>
+                <h3 class="font-bold text-lg mt-4 mb-2">Core Api</h3>
+                <ul>
+                    <li>
+                        <a href="/core-api/create-app.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            createApp
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/core-api/create-branch.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            createBranch
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/core-api/create-route.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            createRoute
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/core-api/create-handle.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            createHandle
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/core-api/create-error-handler.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            createErrorHandler
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/core-api/create-renderer.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            createRenderer
+                        </a>
+                    </li>
+                </ul>
+                <h3 class="font-bold text-lg mt-4 mb-2">Advanced Usage</h3>
+                <ul>
+                    <li>
+                        <a href="/advanced-usage/responding-to-requests.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            Responding to Requests
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/advanced-usage/cors-and-options-requests.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            CORS and OPTIONS Requests
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/advanced-usage/head-requests.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            HEAD Requests
+                        </a>
+                    </li>
+                </ul>
+                <h3 class="font-bold text-lg mt-4 mb-2">Utilities</h3>
+                <ul>
+                    <li>
+                        <a href="/utilities/ex.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            Ex
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/utilities/static-directory.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            staticDirectory
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/utilities/send-file.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            sendFile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/utilities/inject.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            inject
+                        </a>
+                    </li>
+                </ul>
+                <h3 class="font-bold text-lg mt-4 mb-2">Additional Information</h3>
+                <ul>
+                    <li>
+                        <a href="/additional-information/bundle-properties.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            Bundle Properties
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/additional-information/get-body.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            getBody
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/additional-information/logger.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            Logger
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/additional-information/conclusion.html" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                            Conclusion
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="flex-grow p-8">
+            <div class="max-w-3xl">
+                <h1 class="text-3xl font-bold mb-6">Getting Started</h1>
+                <div class="prose max-w-none mb-24">
+                    <p>Choose a topic from the sidebar.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="bg-gray-200 text-center p-4 mt-auto">
+        <p class="text-gray-600">&copy; 2024 Kequapp. All rights reserved.</p>
+    </footer>
+    <script src="/assets/search.js" defer></script>
+</body>
+
+</html>
