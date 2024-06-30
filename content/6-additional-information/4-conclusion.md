@@ -1,0 +1,3 @@
+# Conclusion
+
+This should be able to handle the construction of complicated applications that do anything we could want. Please feel free to contribute or create issue tickets on the GitHub page.
