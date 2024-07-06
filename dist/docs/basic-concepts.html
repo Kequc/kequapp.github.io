@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic Concepts - Kequapp Documentation</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     <link href="/assets/style.css" rel="stylesheet">
     <script src="/assets/search.js" defer></script>
 </head>
@@ -93,8 +94,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/core-api/create-handle.html" class="text-gray-300 hover:text-green-400 w-full block py-1">
-                                createHandle
+                            <a href="/core-api/create-action.html" class="text-gray-300 hover:text-green-400 w-full block py-1">
+                                createAction
                             </a>
                         </li>
                         <li>
@@ -188,13 +189,13 @@
         {
             <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
             <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/&#x27;</span>,
-            <span class="hljs-attr">handles</span>: [<span class="hljs-function">() =&gt;</span> <span class="hljs-string">&#x27;Hello world!&#x27;</span>]
+            <span class="hljs-attr">actions</span>: [<span class="hljs-function">() =&gt;</span> <span class="hljs-string">&#x27;Hello world!&#x27;</span>]
         }
     ]
 });
 </code></pre>
                     <h3>createBranch()</h3>
-                    <p>The <code>createBranch</code> function allows you to organize your routes and middleware into logical sections, or branches. Each branch can have its own set of routes, handles, error handlers, and renderers.</p>
+                    <p>The <code>createBranch</code> function allows you to organize your routes and middleware into logical sections, or branches. Each branch can have its own set of routes, actions, error handlers, and renderers.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createBranch } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 
 <span class="hljs-keyword">const</span> userBranch = <span class="hljs-title function_">createBranch</span>({
@@ -203,7 +204,7 @@
         {
             <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
             <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/&#x27;</span>,
-            <span class="hljs-attr">handles</span>: [<span class="hljs-function">() =&gt;</span> ({ <span class="hljs-attr">users</span>: [] })]
+            <span class="hljs-attr">actions</span>: [<span class="hljs-function">() =&gt;</span> ({ <span class="hljs-attr">users</span>: [] })]
         }
     ]
 });
@@ -215,33 +216,33 @@
 <span class="hljs-keyword">const</span> getUserRoute = <span class="hljs-title function_">createRoute</span>({
     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
     <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users/:id&#x27;</span>,
-    <span class="hljs-attr">handles</span>: [<span class="hljs-function">(<span class="hljs-params">{ params }</span>) =&gt;</span> ({ <span class="hljs-attr">userId</span>: params.<span class="hljs-property">id</span> })]
+    <span class="hljs-attr">actions</span>: [<span class="hljs-function">(<span class="hljs-params">{ params }</span>) =&gt;</span> ({ <span class="hljs-attr">userId</span>: params.<span class="hljs-property">id</span> })]
 });
 </code></pre>
-                    <h3>createHandle()</h3>
-                    <p>Handles are functions that process requests. They can modify the request and response objects, perform authentication, validation, or any other processing needed. Handles are executed in sequence.</p>
-                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createHandle } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
+                    <h3>createAction()</h3>
+                    <p>actions are functions that process requests. They can modify the request and response objects, perform authentication, validation, or any other processing needed. actions are executed in sequence.</p>
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createAction } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 
-<span class="hljs-keyword">const</span> jsonHandle = <span class="hljs-title function_">createHandle</span>(<span class="hljs-function">(<span class="hljs-params">{ res }</span>) =&gt;</span> {
+<span class="hljs-keyword">const</span> jsonHandle = <span class="hljs-title function_">createAction</span>(<span class="hljs-function">(<span class="hljs-params">{ res }</span>) =&gt;</span> {
     res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;application/json&#x27;</span>);
 });
 </code></pre>
                     <h3>createErrorHandler()</h3>
-                    <p>Error handlers are invoked when a handle throws an exception. They turn errors into useful information that is sent to the client. You can create custom error handlers to provide better error responses.</p>
+                    <p>Error handlers are invoked when an action throws an exception. They turn errors into useful information that is sent to the client. You can create custom error handlers to provide better error responses.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createErrorHandler } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 
 <span class="hljs-keyword">const</span> textErrorHandler = <span class="hljs-title function_">createErrorHandler</span>({
     <span class="hljs-attr">contentType</span>: <span class="hljs-string">&#x27;text/*&#x27;</span>,
-    <span class="hljs-attr">handle</span>: <span class="hljs-function">(<span class="hljs-params">ex, { url }</span>) =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">${url.pathname}</span> <span class="hljs-subst">${ex.statusCode}</span>: <span class="hljs-subst">${ex.message}</span>`</span>
+    <span class="hljs-attr">action</span>: <span class="hljs-function">(<span class="hljs-params">ex, { url }</span>) =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">${url.pathname}</span> <span class="hljs-subst">${ex.statusCode}</span>: <span class="hljs-subst">${ex.message}</span>`</span>
 });
 </code></pre>
                     <h3>createRenderer()</h3>
-                    <p>Renderers are responsible for finalizing the response to the client. When a handle returns a value, a renderer is invoked to send the response. You can create custom renderers for different content types.</p>
+                    <p>Renderers are responsible for finalizing the response to the client. When an action returns a value, a renderer is invoked to send the response. You can create custom renderers for different content types.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createRenderer } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 
 <span class="hljs-keyword">const</span> htmlRenderer = <span class="hljs-title function_">createRenderer</span>({
     <span class="hljs-attr">contentType</span>: <span class="hljs-string">&#x27;text/html&#x27;</span>,
-    <span class="hljs-attr">handle</span>: <span class="hljs-function">(<span class="hljs-params">payload, { req, res }</span>) =&gt;</span> {
+    <span class="hljs-attr">action</span>: <span class="hljs-function">(<span class="hljs-params">payload, { req, res }</span>) =&gt;</span> {
         <span class="hljs-keyword">const</span> html = <span class="hljs-title function_">myMarkupRenderer</span>(payload);
 
         res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Content-Length&#x27;</span>, <span class="hljs-title class_">Buffer</span>.<span class="hljs-title function_">byteLength</span>(html));

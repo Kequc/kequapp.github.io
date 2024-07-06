@@ -8,7 +8,7 @@ Occasionally, we may need to differentiate between the two as it is generally un
 createRoute({
     method: 'GET',
     url: '/api/users',
-    handles: [({ req }) => {
+    actions: [({ req }) => {
         if (req.method === 'HEAD') {
             // head request
         }

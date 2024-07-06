@@ -20,7 +20,7 @@ Useful for examining the query string, for example by digging into [searchParams
 createRoute({
     method: 'GET',
     url: '/hotels',
-    handles: [({ url }) => {
+    actions: [({ url }) => {
         const page = url.searchParams.get('page');
         const categories = url.searchParams.getAll('categories');
 
@@ -36,7 +36,7 @@ An array of methods available in our app at the current url.
 
 ### context
 
-A place to store variables derived by handles, we might use these variables elsewhere in our code. Changes can be made here whenever we want and it may be populated with anything.
+A place to store variables derived by actions, we might use these variables elsewhere in our code. Changes can be made here whenever we want and it may be populated with anything.
 
 Maybe authentication details, a user object, or any data that's used in other places.
 
@@ -51,7 +51,7 @@ Param values are always a string.
 Includes helpers for `get()`, `set()`, and `remove()`. The `set()` method takes an optional third parameter with `expires`, `maxAge`, `domain`, `path`, `secure`, `httpOnly`, `partitioned`, and `sameSite`.
 
 ```javascript
-createHandle(({ cookies }) => {
+createAction(({ cookies }) => {
     // get a cookie
     const value: string | undefined = cookies.get('MyCookie');
     // set a cookie

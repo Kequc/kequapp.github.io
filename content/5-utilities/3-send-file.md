@@ -9,7 +9,7 @@ Sends a file and finalizes the response.
 This is asynchronous and must be awaited; otherwise, the application might get confused as it continues processing the request unexpectedly.
 
 ```javascript
-const serveDb = createHandle(async ({ req, res }) => {
+const serveDb = createAction(async ({ req, res }) => {
     await sendFile(req, res, '/db/my-db.json');
 });
 
@@ -18,7 +18,7 @@ createApp({
         {
             method: 'GET',
             url: '/db.json',
-            handles: [serveDb],
+            actions: [serveDb],
         }
     ]
 });

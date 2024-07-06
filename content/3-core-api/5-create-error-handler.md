@@ -7,16 +7,16 @@ import { createErrorHandler } from 'kequapp';
 | key | description | default |
 | ---- | ---- | ---- |
 | **contentType \*** | *Content type* | |
-| **handle \*** | *Handler* | |
+| **action \*** | *Handler* | |
 
-An appropriate error handler is invoked whenever a handle throws an exception.
+An appropriate error handler is invoked whenever an action throws an exception.
 
 ### Example
 
 ```javascript
 createErrorHandler({
     contentType: 'text/*',
-    handle: (ex, { url }) => {
+    action: (ex, { url }) => {
         return `${url.pathname} ${ex.statusCode}: ${ex.message}`;
     }
 });

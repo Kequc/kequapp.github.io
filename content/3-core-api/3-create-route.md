@@ -8,7 +8,7 @@ import { createRoute } from 'kequapp';
 | ---- | ---- | ---- |
 | **method \*** | *Method* | |
 | **url \*** | *Pathname* | |
-| **handles** | *Sequence* | `[]` |
+| **actions** | *Sequence* | `[]` |
 | **logger** | *Logger* | `console` |
 | **autoHead** | *HEAD request* | `true` |
 
@@ -20,8 +20,8 @@ A route must specify a method (`'GET'`, `'POST'`, etc.) and a url. The url is a 
 createRoute({
     method: 'POST',
     url: '/admin/users',
-    handles: [loggedIn, () => 'User created!']
+    actions: [loggedIn, () => 'User created!']
 });
 ```
 
-This example has two handles. One called `loggedIn()`, then a second that returns a value which is therefore delivered to a renderer.
+This example has two actions. One called `loggedIn()`, then a second that returns a value which is therefore delivered to a renderer.

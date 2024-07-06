@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>createErrorHandler - Kequapp Documentation</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     <link href="/assets/style.css" rel="stylesheet">
     <script src="/assets/search.js" defer></script>
 </head>
@@ -93,8 +94,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/core-api/create-handle.html" class="text-gray-300 hover:text-green-400 w-full block py-1">
-                                createHandle
+                            <a href="/core-api/create-action.html" class="text-gray-300 hover:text-green-400 w-full block py-1">
+                                createAction
                             </a>
                         </li>
                         <li>
@@ -195,17 +196,17 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><strong>handle *</strong></td>
+                                <td><strong>action *</strong></td>
                                 <td><em>Handler</em></td>
                                 <td></td>
                             </tr>
                         </tbody>
                     </table>
-                    <p>An appropriate error handler is invoked whenever a handle throws an exception.</p>
+                    <p>An appropriate error handler is invoked whenever an action throws an exception.</p>
                     <h3>Example</h3>
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">createErrorHandler</span>({
     <span class="hljs-attr">contentType</span>: <span class="hljs-string">&#x27;text/*&#x27;</span>,
-    <span class="hljs-attr">handle</span>: <span class="hljs-function">(<span class="hljs-params">ex, { url }</span>) =&gt;</span> {
+    <span class="hljs-attr">action</span>: <span class="hljs-function">(<span class="hljs-params">ex, { url }</span>) =&gt;</span> {
         <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${url.pathname}</span> <span class="hljs-subst">${ex.statusCode}</span>: <span class="hljs-subst">${ex.message}</span>`</span>;
     }
 });
