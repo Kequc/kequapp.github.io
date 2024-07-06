@@ -9,8 +9,6 @@ Sends a file and finalizes the response.
 This is asynchronous and must be awaited; otherwise, the application might get confused as it continues processing the request unexpectedly.
 
 ```javascript
-// sendFile
-
 const serveDb = createHandle(async ({ req, res }) => {
     await sendFile(req, res, '/db/my-db.json');
 });

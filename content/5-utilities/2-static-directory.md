@@ -7,8 +7,6 @@ import { staticDirectory } from 'kequapp';
 Pairs a wild parameter with a static directory relative to the root of our project.
 
 ```javascript
-// staticDirectory
-
 const staticAssets = staticDirectory({
     location: '/my-assets-dir',
     contentTypes: {

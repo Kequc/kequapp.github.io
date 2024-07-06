@@ -9,8 +9,6 @@ Any handle may terminate a request one of three ways:
 Finalizing a response is for cases where we need the most control. It allows us to terminate the response any way we want without invoking a renderer.
 
 ```javascript
-// Respond to a request
-
 const authenticated = createHandle(({ req, res }) => {
     // must be authenticated!
 

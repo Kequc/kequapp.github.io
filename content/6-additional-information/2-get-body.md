@@ -5,8 +5,6 @@ Node delivers the body of a request in chunks.
 It is not necessary to wait for the request to finish before we begin processing it. In most cases, we just want the data and therefore a helper method `getBody()` is provided which we may use to await body parameters from the completed request.
 
 ```javascript
-// getBody
-
 createRoute({
     method: 'POST',
     url: '/users',
@@ -29,8 +27,6 @@ It takes an options object which can be used to parse and normalize a client req
 Causes the method to return both `body` and `files`. If the client didn't send any files, or it wasn't a multipart request the second parameter will be an empty array.
 
 ```javascript
-// multipart
-
 createRoute({
     method: 'POST',
     url: '/users',
@@ -61,8 +57,6 @@ createRoute({
 Causes the body to be processed as minimally as possible and return a single buffer. This is especially useful when our application expects a content type other than `'application/x-www-form-urlencoded'`, `'application/json'`, or `'multipart/form-data'`.
 
 ```javascript
-// raw
-
 createRoute({
     method: 'POST',
     url: '/users',
@@ -79,8 +73,6 @@ createRoute({
 When combined with `multipart`, the body is parsed into an array of separate buffers with their respective headers.
 
 ```javascript
-// raw
-
 createRoute({
     method: 'POST',
     url: '/users',
@@ -118,8 +110,6 @@ The provided list of fields are converted into arrays.
 Fields that are not specified will return only the first value. This is because the framework only knows that a field is an array when it receives more than one value for a given name from the client. It would be inconvenient if parameters are sometimes arrays, and therefore we are explicit.
 
 ```javascript
-// arrays
-
 createRoute({
     method: 'POST',
     url: '/users',
@@ -156,8 +146,6 @@ The provided list of fields are converted into `false` if the value is falsy, `'
 After normalization, this method further ensures the validity of the data. Returning anything throws a `422 Unprocessable Entity` error.
 
 ```javascript
-// validate
-
 interface TBody {
     ownedPets: string[];
     age: number;

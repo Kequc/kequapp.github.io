@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>createRenderer - Kequapp Documentation</title>
+    <title>Hello World - Kequapp Documentation</title>
     <link href="/assets/style.css" rel="stylesheet">
     <script src="/assets/search.js" defer></script>
 </head>
@@ -65,7 +65,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/getting-started/hello-world.html" class="text-gray-300 hover:text-green-400 w-full block py-1">
+                            <a href="/getting-started/hello-world.html" class="text-green-400 font-medium w-full block py-1">
                                 Hello World
                             </a>
                         </li>
@@ -98,7 +98,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/core-api/create-renderer.html" class="text-green-400 font-medium w-full block py-1">
+                            <a href="/core-api/create-renderer.html" class="text-gray-300 hover:text-green-400 w-full block py-1">
                                 createRenderer
                             </a>
                         </li>
@@ -171,50 +171,27 @@
             </aside>
             <main class="flex-1 ml-80 p-8 mb-32">
                 <!-- Main content -->
-                <h1 class="text-white text-3xl mb-8"># createRenderer</h1>
+                <h1 class="text-white text-3xl mb-8"># Hello World</h1>
                 <div class="prose prose-invert max-w-none">
-                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createRenderer } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
-</code></pre>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>key</th>
-                                <th>description</th>
-                                <th>default</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>contentType *</strong></td>
-                                <td><em>Content type</em></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td><strong>handle *</strong></td>
-                                <td><em>Handler</em></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p>An appropriate renderer is invoked whenever a handle returns a value apart from undefined. We may return a value to invoke a renderer or finalize the response ourselves directly, which skips this step.</p>
-                    <p>Here is a simple example of an HTML renderer:</p>
-                    <pre><code class="hljs language-javascript"><span class="hljs-title function_">createRenderer</span>({
-    <span class="hljs-attr">contentType</span>: <span class="hljs-string">&#x27;text/html&#x27;</span>,
-    <span class="hljs-attr">handle</span>: <span class="hljs-function">(<span class="hljs-params">payload, { req, res }</span>) =&gt;</span> {
-        <span class="hljs-keyword">const</span> html = <span class="hljs-title function_">myMarkupRenderer</span>(payload);
+                    <p>Here&#39;s a simple example to get you started with Kequapp:</p>
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createServer } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;http&#x27;</span>;
+<span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 
-        res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Content-Length&#x27;</span>, <span class="hljs-title class_">Buffer</span>.<span class="hljs-title function_">byteLength</span>(html));
-
-        <span class="hljs-comment">// finalize response</span>
-        <span class="hljs-keyword">if</span> (req.<span class="hljs-property">method</span> === <span class="hljs-string">&#x27;HEAD&#x27;</span>) {
-            res.<span class="hljs-title function_">end</span>();
-        } <span class="hljs-keyword">else</span> {
-            res.<span class="hljs-title function_">end</span>(html);
+<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">createApp</span>({
+    <span class="hljs-attr">routes</span>: [
+        {
+            <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+            <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/&#x27;</span>,
+            <span class="hljs-attr">handles</span>: [<span class="hljs-function">() =&gt;</span> <span class="hljs-string">&#x27;Hello world!&#x27;</span>]
         }
-    }
+    ]
+});
+
+<span class="hljs-title function_">createServer</span>(app).<span class="hljs-title function_">listen</span>(<span class="hljs-number">4000</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Server running at http://localhost:4000&#x27;</span>);
 });
 </code></pre>
-                    <p>For good examples of how to write a renderer see this repo&#39;s /src/built-in directory.</p>
+                    <p>This example responds to all &#39;GET&#39; and &#39;HEAD&#39; requests made to &#39;/&#39;, otherwise a 404 Not Found error will be thrown. The framework comes with a built-in error handler and some renderers, so for now, this is all we need.</p>
                 </div>
             </main>
         </div>

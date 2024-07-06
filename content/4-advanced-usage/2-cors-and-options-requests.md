@@ -5,8 +5,6 @@ CORS behavior is managed by headers as shaped by handles. The framework will aut
 To enable CORS, our application needs to respond to preflight requests, therefore we define an OPTIONS route. By default, any url that has a matching OPTIONS route is decorated with 'Access-Control-Allow-Origin' with a value of '*'. This alone is enough to handle the majority of CORS-related cases and functionality.
 
 ```javascript
-// CORS
-
 createApp({
     routes: [
         {
@@ -22,8 +20,6 @@ The framework automatically attaches four additional headers to OPTIONS response
 In addition, the default response code for OPTIONS requests is 204. To change any of this behavior or add more headers to OPTIONS responses, we use a handle.
 
 ```javascript
-// CORS
-
 createApp({
     routes: [
         {
@@ -43,8 +39,6 @@ As OPTIONS responses do not need to include a body, we can safely leave the rout
 The simplest place to override 'Access-Control-Allow-Origin' is at the base of the application but we may adjust this as needed. The createApp() method accepts handles and is a convenient place to set global headers.
 
 ```javascript
-// CORS
-
 const strictCors = createHandle(({ res, methods }) => {
     if (methods.includes('OPTIONS')) {
         res.setHeader('Access-Control-Allow-Origin', 'https://foo.com');

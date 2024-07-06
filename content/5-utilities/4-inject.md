@@ -9,8 +9,6 @@ We may unit test our application without starting a server by using the inject()
 The returned req value is a simulation of Node's built-in ClientRequest object and is a Transform stream. The returned res value is a simulation of Node's built-in ServerResponse object and is also a Transform stream. The returned getResponse() tool waits for our application to finish, and then parses the response. It is very similar to getBody() as described earlier. We could inspect what our application is doing using the req and res objects in real-time instead if that's what we want.
 
 ```javascript
-// inject
-
 it('reads the authorization header', async () => {
     const { getResponse, res } = inject(app, {
         url: '/admin/dashboard',
@@ -31,8 +29,6 @@ All requests are automatically finalized when using inject() unless the body par
 The following two examples are the same.
 
 ```javascript
-// inject
-
 const { getResponse } = inject(app, {
     method: 'POST',
     url: '/users',
@@ -46,8 +42,6 @@ const body = await getResponse();
 ```
 
 ```javascript
-// inject
-
 const { getResponse, req } = inject(app, {
     method: 'POST',
     url: '/users',

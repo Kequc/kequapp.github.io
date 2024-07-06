@@ -2,7 +2,7 @@
 
 Understanding the core concepts of Kequapp will help you build applications efficiently and effectively. Here are the fundamental components that make up the Kequapp framework:
 
-## createApp()
+### createApp()
 
 The `createApp` function is the entry point of your application. It prepares your app to handle incoming requests and serves as the main event handler for Node's `createServer` method.
 
@@ -20,7 +20,7 @@ const app = createApp({
 });
 ```
 
-## createBranch()
+### createBranch()
 
 The `createBranch` function allows you to organize your routes and middleware into logical sections, or branches. Each branch can have its own set of routes, handles, error handlers, and renderers.
 
@@ -39,7 +39,7 @@ const userBranch = createBranch({
 });
 ```
 
-## createRoute()
+### createRoute()
 
 Routes define the endpoints of your application. Each route specifies a method (`GET`, `POST`, etc.) and a URL. Routes are the building blocks of your application's API.
 
@@ -53,7 +53,7 @@ const getUserRoute = createRoute({
 });
 ```
 
-## createHandle()
+### createHandle()
 
 Handles are functions that process requests. They can modify the request and response objects, perform authentication, validation, or any other processing needed. Handles are executed in sequence.
 
@@ -65,7 +65,7 @@ const jsonHandle = createHandle(({ res }) => {
 });
 ```
 
-## createErrorHandler()
+### createErrorHandler()
 
 Error handlers are invoked when a handle throws an exception. They turn errors into useful information that is sent to the client. You can create custom error handlers to provide better error responses.
 
@@ -78,7 +78,7 @@ const textErrorHandler = createErrorHandler({
 });
 ```
 
-## createRenderer()
+### createRenderer()
 
 Renderers are responsible for finalizing the response to the client. When a handle returns a value, a renderer is invoked to send the response. You can create custom renderers for different content types.
 

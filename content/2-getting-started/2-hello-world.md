@@ -1,10 +1,8 @@
-# Hello World Example
+# Hello World
 
 Here's a simple example to get you started with Kequapp:
 
 ```javascript
-// hello world!
-
 import { createServer } from 'http';
 import { createApp } from 'kequapp';
 
