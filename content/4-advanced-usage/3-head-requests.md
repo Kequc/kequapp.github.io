@@ -5,8 +5,6 @@ By default, if a HEAD request has no matching route, our application will use a 
 Occasionally, we may need to differentiate between the two as it is generally understood that a HEAD request does not modify data. In this case, looking at the value of req.method can be useful.
 
 ```javascript
-// HEAD
-
 createRoute({
     method: 'GET',
     url: '/api/users',

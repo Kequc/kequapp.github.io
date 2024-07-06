@@ -4,7 +4,7 @@ Welcome to the Kequapp Documentation!
 
 We are thrilled to have you here. Kequapp is a non-intrusive Node.js web application framework designed to leverage Node's built-in features while staying out of your way. Whether you're a seasoned developer or just starting your journey, Kequapp provides a robust and flexible foundation to build your web applications with ease.
 
-## Why Kequapp?
+### Why Kequapp?
 
 Kequapp is crafted with simplicity and modularity in mind. Here are some key features that make Kequapp stand out:
 
@@ -17,7 +17,7 @@ Kequapp is crafted with simplicity and modularity in mind. Here are some key fea
 - **No Dependencies**: Kequapp has zero dependencies, ensuring a lightweight and fast setup.
 - **Node Features and Functionality**: Exposes and leverages the full power of Node.js.
 
-## Getting Started
+### Getting Started
 
 We want to make your experience with Kequapp as smooth as possible. Here’s a quick guide to get you started:
 
@@ -26,7 +26,7 @@ We want to make your experience with Kequapp as smooth as possible. Here’s a q
    npm i kequapp
    ```
 
-2. **Hello World Example**: Follow our step-by-step [Hello World Example](/getting-started/hello-world-example.html) to see Kequapp in action.
+2. **Hello World Example**: Follow our step-by-step [Hello World](/getting-started/hello-world.html) example to see it in action.
 
 3. **Core Concepts**: Learn about the core concepts and API methods that make Kequapp powerful and easy to use in the [Basic Concepts](basic-concepts.md) section.
 

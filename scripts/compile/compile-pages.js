@@ -67,14 +67,14 @@ function getSidebar(categories, categorySlug, pageSlug) {
     return categories.map(category => ({
         categoryTitle: category.title,
         pages: category.pages.map(page => ({
-            pageUrl: getPageUrl(category.slug, page.slug),
+            url: getUrl(category.slug, page.slug),
             pageTitle: page.title,
             active: category.slug === categorySlug && page.slug === pageSlug,
         })),
     }));
 }
 
-function getPageUrl(categorySlug, pageSlug) {
+function getUrl(categorySlug, pageSlug) {
     const url = `/${categorySlug}/${pageSlug}.html`;
     return INDEX_URL === url ? '/' : url;
 }

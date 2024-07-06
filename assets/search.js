@@ -20,9 +20,13 @@ async function search(query) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('search-input');
-    const searchResults = document.getElementById('search-results');
-    const searchContainer = document.getElementById('search-container');
+    const searchInput = document.getElementById('search-bar');
+    const searchContainer = searchInput.closest('.relative');
+
+    // Create search results container
+    const searchResults = document.createElement('div');
+    searchResults.className = 'absolute left-0 right-0 mt-2 bg-green-700 rounded-lg shadow-lg overflow-hidden z-20 hidden';
+    searchContainer.appendChild(searchResults);
 
     searchInput.addEventListener('input', async (e) => {
         const query = e.target.value;
@@ -33,22 +37,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const results = await search(query);
         searchResults.innerHTML = results.map(result => `
-            <li class="p-4 hover:bg-gray-100">
-                <a href="${result.url}" class="font-medium text-green-600 hover:underline">
+            <div class="p-4 hover:bg-green-600 transition-colors duration-150">
+                <a href="${result.url}" class="font-medium text-white hover:underline">
                     ${result.title}
                 </a>
                 <ul class="ml-4 mt-2 space-y-1">
                     ${result.sections.map(section => `
-                        <li class="text-sm text-gray-600">${section.title}</li>
+                        <li class="text-sm text-green-200">${section.title}</li>
                     `).join('')}
                 </ul>
-            </li>
+            </div>
         `).join('');
         searchResults.classList.remove('hidden');
     });
 
     document.addEventListener('click', (e) => {
         if (!searchContainer.contains(e.target)) {
+            searchResults.classList.add('hidden');
+        }
+    });
+
+    // Add focus and blur events to handle keyboard navigation
+    searchInput.addEventListener('focus', () => {
+        if (searchInput.value.length >= 2) {
+            searchResults.classList.remove('hidden');
+        }
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
             searchResults.classList.add('hidden');
         }
     });

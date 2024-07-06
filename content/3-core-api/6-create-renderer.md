@@ -14,8 +14,6 @@ An appropriate renderer is invoked whenever a handle returns a value apart from 
 Here is a simple example of an HTML renderer:
 
 ```javascript
-// createRenderer
-
 createRenderer({
     contentType: 'text/html',
     handle: (payload, { req, res }) => {
