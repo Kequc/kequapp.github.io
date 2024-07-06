@@ -1,12 +1,12 @@
 import fsx from 'fs-extra';
 import path from 'path';
-import { DIST_FOLDER } from '../../constants.js';
+import { DIST_FOLDER, INDEX_URL } from '../../constants.js';
 
 export default async function compileSearchIndex(categories) {
     const searchIndex = categories.map(category => {
         return category.pages.map(page => ({
             title: page.title,
-            url: `/${category.slug}/${page.slug}.html`,
+            url: getUrl(category.slug, page.slug),
             sections: extractSections(page.content)
         }));
     }).flat();
@@ -39,4 +39,9 @@ function extractSections(content) {
     }
 
     return sections;
+}
+
+function getUrl(categorySlug, pageSlug) {
+    const url = `/${categorySlug}/${pageSlug}.html`;
+    return INDEX_URL === url ? '/' : url;
 }
