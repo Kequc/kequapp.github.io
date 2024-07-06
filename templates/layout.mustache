@@ -37,7 +37,32 @@
     </header>
     <div class="flex-grow container mx-auto max-w-7xl flex">
         <aside class="w-72 bg-white shadow-md">
-            {{{sidebar}}}
+            <nav class="p-6 sticky top-0">
+                <a class="mb-6" href="/">
+                    <img src="/assets/logo.png" alt="Kequapp Logo" class="w-28">
+                </a>
+                {{#sidebar}}
+                    <h3 class="font-bold text-lg mt-4 mb-2">{{categoryTitle}}</h3>
+                    <ul>
+                        {{#pages}}
+                            {{#active}}
+                                <li>
+                                    <a href="{{{pageUrl}}}" class="text-green-600 font-medium w-full block py-1">
+                                        {{pageTitle}}
+                                    </a>
+                                </li>
+                            {{/active}}
+                            {{^active}}
+                                <li>
+                                    <a href="{{{pageUrl}}}" class="text-gray-700 hover:text-green-600 w-full block py-1">
+                                        {{pageTitle}}
+                                    </a>
+                                </li>
+                            {{/active}}
+                        {{/pages}}
+                    </ul>
+                {{/sidebar}}
+            </nav>
         </aside>
         <main class="flex-grow p-8">
             <div class="max-w-3xl">

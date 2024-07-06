@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "tw:watch": "npx tailwindcss -i ./globals.css -o ./assets/style.css --watch",
     "tw:build": "npx tailwindcss -i ./globals.css -o ./assets/style.css --minify",
-    "compile:watch": "watch 'npm run compile:build' ./content ./templates ./partials",
-    "compile:build": "node ./compile.js",
-    "start": "concurrently \"npm run tw:watch\" \"npm run compile:watch\"",
+    "compile:watch": "watch 'npm run compile:build' ./scripts ./content ./templates",
+    "compile:build": "node ./scripts/compile.js",
+    "start": "concurrently \"npm run server\" \"npm run tw:watch\" \"npm run compile:watch\"",
     "build": "npm run tw:build && npm run compile:build",
     "server": "npx http-server ./dist -p 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
