@@ -1,5 +1,6 @@
 import fsx from 'fs-extra';
 import path from 'path';
+import removeMd from 'remove-markdown';
 import { DIST_FOLDER, INDEX_URL } from '../../constants.js';
 
 export default async function compileSearchIndex(categories) {
@@ -7,7 +8,7 @@ export default async function compileSearchIndex(categories) {
         return category.pages.map(page => ({
             title: page.title,
             url: getUrl(category.slug, page.slug),
-            sections: extractSections(page.content)
+            sections: extractSections(page.title, page.content),
         }));
     }).flat();
 
@@ -19,24 +20,34 @@ async function writeSearchIndex(searchIndex) {
     await fsx.writeJson(filePath, searchIndex);
 }
 
-function extractSections(content) {
+// strip markdown from the page content
+// collate text into sections based on headings
+function extractSections(title, content) {
     const sections = [];
     const lines = content.split('\n');
-    let currentSection = null;
+    let currentSection = { title, content: '' };
+
+    function pushCurrentSection() {
+        if (currentSection) {
+            // replace any number of newlines with a space
+            currentSection.content = removeMd(currentSection.content)
+                .replace(/\n+/g, ' ')
+                .trim();
+            sections.push(currentSection);
+        }
+    }
 
     for (const line of lines) {
         const match = line.match(/^(#{2,6})\s+(.+)$/);
         if (match) {
-            if (currentSection) sections.push(currentSection);
+            pushCurrentSection();
             currentSection = { title: match[2], content: '' };
         } else if (currentSection) {
-            currentSection.content += line + '\n';
+            currentSection.content += line.trim() + '\n';
         }
     }
 
-    if (currentSection) {
-        sections.push(currentSection);
-    }
+    pushCurrentSection();
 
     return sections;
 }

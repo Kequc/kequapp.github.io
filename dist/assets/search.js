@@ -10,13 +10,50 @@ async function fetchSearchIndex() {
 
 async function search(query) {
     const index = await fetchSearchIndex();
-    return index.filter(page =>
-        page.title.toLowerCase().includes(query.toLowerCase()) ||
-        page.sections.some(section =>
-            section.title.toLowerCase().includes(query.toLowerCase()) ||
-            section.content.toLowerCase().includes(query.toLowerCase())
-        )
-    );
+    const found = [];
+
+    for (const page of index) {
+        if (page.title.toLowerCase().includes(query)) {
+            found.push({
+                title: formatContent(page.title, query),
+                url: page.url,
+                content: formatContent(page.sections[0].content, query),
+                order: 0,
+            });
+        } else {
+            for (const section of page.sections) {
+                if (section.title.toLowerCase().includes(query)) {
+                    found.push({
+                        title: formatContent(page.title, query),
+                        url: page.url,
+                        content: formatContent(section.title, query),
+                        order: 1,
+                    });
+                    break;
+                }
+                const contentIndex = section.content.toLowerCase().indexOf(query);
+                if (contentIndex > -1) {
+
+                    found.push({
+                        title: formatContent(page.title, query),
+                        url: page.url,
+                        content: formatContent(section.content, query, contentIndex),
+                        order: 2,
+                    });
+                    break;
+                }
+            }
+        }
+    }
+
+    return found.sort((a, b) => a.order - b.order).slice(0, 8);
+}
+
+function formatContent(content, query, startIndex = 0) {
+    return content
+        .substring(startIndex, startIndex + 100)
+        .replace(new RegExp(query, 'gi'), match => `<span class="bg-yellow-400 text-gray-900">${match}</span>`)
+        .trim();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -42,8 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchInput.addEventListener('input', async (e) => {
         updateSearchUI();
-        const query = e.target.value;
-        const results = await search(query);
+        const query = e.target.value ?? '';
+        const results = await search(query.toLowerCase());
 
         if (query.length < 2) {
             searchResults.classList.add('hidden');
@@ -55,11 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="font-medium text-green-400 group-hover:underline">
                     ${result.title}
                 </div>
-                <ul class="ml-4 mt-2 space-y-1">
-                    ${result.sections.map(section => `
-                        <li class="text-sm text-gray-400">${section.title}</li>
-                    `).join('')}
-                </ul>
+                <div class="text-sm text-gray-400">${result.content}</div>
             </a>
         `).join('');
 
