@@ -35,7 +35,7 @@ module.exports = {
               borderLeftColor: theme('colors.gray.700'),
             },
             table: {
-              width: '75%',
+              maxWidth: '75%',
               fontSize: theme('fontSize.sm')[0],
               lineHeight: theme('fontSize.sm')[1].lineHeight,
             },
