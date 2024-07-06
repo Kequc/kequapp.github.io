@@ -1,4 +1,4 @@
-export const VERSION = 'v0.7.0';
+export const VERSION = 'v0.8.0';
 export const INDEX_URL = '/docs/introduction.html';
 export const ASSETS_FOLDER = './assets';
 export const CONTENT_FOLDER = './content';
