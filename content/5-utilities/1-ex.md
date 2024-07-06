@@ -4,7 +4,7 @@
 import { Ex } from 'kequapp';
 ```
 
-An unhandled exception from our application results in a `500 Internal Server Error`. If you would like an error with a different status code, there is a helper tool for that.
+An unhandled exception from your application results in a `500 Internal Server Error`. If you would like an error with a different status code, there is a helper tool for that.
 
 ```javascript
 createAction(() => {

@@ -17,15 +17,15 @@ Kequapp is crafted with simplicity and modularity in mind. Here are some key fea
 
 ### Getting Started
 
-We want to make your experience with Kequapp as smooth as possible. Here’s a quick guide to get you started:
+I want to make your experience with Kequapp as smooth as possible. Here’s a quick guide to get you started:
 
 1. **Installation**: Install Kequapp via npm with a simple command:
    ```
    npm i kequapp
    ```
 
-2. **Hello World**: Follow our simple [Hello World](/getting-started/hello-world.html) example to see it in action.
+2. **Hello World**: Follow the simple [Hello World](/getting-started/hello-world.html) example to see it in action.
 
-We believe Kequapp will provide you with the tools and flexibility you need to build great web applications. Dive into the documentation to explore more about each feature and how to leverage them in your projects.
+I believe Kequapp will provide you with the tools and flexibility you need to build great web applications. Dive into the documentation to explore more about each feature and how to leverage them in your projects.
 
 If you have any questions, need further assistance, or want to contribute, feel free to reach out on the <a href="https://github.com/Kequc/kequapp" target="_blank">GitHub page</a>.

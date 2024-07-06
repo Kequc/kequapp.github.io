@@ -46,4 +46,4 @@ If your application makes use of the body of requests in a unique way this frame
 
 Understanding these core concepts will help you build robust and scalable applications with Kequapp. As you explore the documentation, you'll find more details and examples to guide you through each feature.
 
-Thank you for trying our framework I hope it's as enjoyable for you as it is for myself!
+Thank you for trying your framework I hope it's as enjoyable for you as it is for myself!

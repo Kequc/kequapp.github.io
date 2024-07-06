@@ -95,7 +95,7 @@
                 <!-- Main content -->
                 <h1 class="text-white text-3xl mb-8"># HEAD Requests</h1>
                 <div class="prose prose-invert max-w-none pb-8">
-                    <p>By default, if a <code>HEAD</code> request has no matching route, our application will use a matching <code>GET</code> route in its place. Therefore it is important to keep in mind that <code>HEAD</code> requests follow the same flow as <code>GET</code> requests in our application.</p>
+                    <p>By default, if a <code>HEAD</code> request has no matching route, your application will use a matching <code>GET</code> route in its place. Therefore it is important to keep in mind that <code>HEAD</code> requests follow the same flow as <code>GET</code> requests in your application.</p>
                     <p>This behavior can be disabled by setting the parameter <code>autoHead</code> to <code>false</code> in any branch or route.</p>
                     <p>Occasionally, you may need to differentiate between the two as it is generally understood that a <code>HEAD</code> request does not modify data. In this case, looking at the value of <code>req.method</code> can be useful.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">createRoute</span>({

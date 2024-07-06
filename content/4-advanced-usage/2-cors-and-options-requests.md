@@ -2,7 +2,7 @@
 
 CORS behavior is managed by headers as shaped by actions. The framework will automatically add default headers you can use for basic support.
 
-To enable CORS, our application needs to respond to preflight requests, therefore you define an `OPTIONS` route. By default, any url that has a matching `OPTIONS` route is decorated with `'Access-Control-Allow-Origin'` with a value of `'*'`. This alone is enough to handle the majority of CORS-related cases and functionality.
+To enable CORS, your application needs to respond to preflight requests, therefore you define an `OPTIONS` route. By default, any url that has a matching `OPTIONS` route is decorated with `'Access-Control-Allow-Origin'` with a value of `'*'`. This alone is enough to handle the majority of CORS-related cases and functionality.
 
 ```javascript
 createApp({

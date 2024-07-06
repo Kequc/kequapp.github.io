@@ -32,11 +32,11 @@ createRoute({
 
 ### methods
 
-An array of methods available in our app at the current url (`GET`, `POST`, `OPTIONS`, etc.).
+An array of methods available in your app at the current url (`GET`, `POST`, `OPTIONS`, etc.).
 
 ### context
 
-A place to store variables derived by actions, you might use these variables elsewhere in our code. Changes can be made here whenever you want and it may be populated with anything.
+A place to store variables derived by actions, you might use these variables elsewhere in your code. Changes can be made here whenever you want and it may be populated with anything.
 
 Maybe authentication details, a user object, or any data that's useful in other places.
 

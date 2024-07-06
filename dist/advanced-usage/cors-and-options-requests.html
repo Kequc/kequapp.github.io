@@ -96,7 +96,7 @@
                 <h1 class="text-white text-3xl mb-8"># CORS and OPTIONS Requests</h1>
                 <div class="prose prose-invert max-w-none pb-8">
                     <p>CORS behavior is managed by headers as shaped by actions. The framework will automatically add default headers you can use for basic support.</p>
-                    <p>To enable CORS, our application needs to respond to preflight requests, therefore you define an <code>OPTIONS</code> route. By default, any url that has a matching <code>OPTIONS</code> route is decorated with <code>&#39;Access-Control-Allow-Origin&#39;</code> with a value of <code>&#39;*&#39;</code>. This alone is enough to handle the majority of CORS-related cases and functionality.</p>
+                    <p>To enable CORS, your application needs to respond to preflight requests, therefore you define an <code>OPTIONS</code> route. By default, any url that has a matching <code>OPTIONS</code> route is decorated with <code>&#39;Access-Control-Allow-Origin&#39;</code> with a value of <code>&#39;*&#39;</code>. This alone is enough to handle the majority of CORS-related cases and functionality.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">createApp</span>({
     <span class="hljs-attr">routes</span>: [
         {

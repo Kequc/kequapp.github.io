@@ -1,6 +1,6 @@
 # HEAD Requests
 
-By default, if a `HEAD` request has no matching route, our application will use a matching `GET` route in its place. Therefore it is important to keep in mind that `HEAD` requests follow the same flow as `GET` requests in our application.
+By default, if a `HEAD` request has no matching route, your application will use a matching `GET` route in its place. Therefore it is important to keep in mind that `HEAD` requests follow the same flow as `GET` requests in your application.
 
 This behavior can be disabled by setting the parameter `autoHead` to `false` in any branch or route.
 

@@ -54,7 +54,7 @@ createRoute({
 
 ### raw
 
-Causes the body to be processed as minimally as possible and return a single buffer. This is especially useful when our application expects a content type other than `'application/x-www-form-urlencoded'`, `'application/json'`, or `'multipart/form-data'`.
+Causes the body to be processed as minimally as possible and return a single buffer. This is especially useful when your application expects a content type other than `'application/x-www-form-urlencoded'`, `'application/json'`, or `'multipart/form-data'`.
 
 ```javascript
 createRoute({
@@ -179,4 +179,4 @@ createRoute({
 });
 ```
 
-We know it is safe to use `result.ownedPets.length` in this example because it is listed as an `arrays` field and therefore certain to be an array. `result.name` is also safe to use because it is listed as a `required` field and therefore certain to exist.
+You know it is safe to use `result.ownedPets.length` in this example because it is listed as an `arrays` field and therefore certain to be an array. `result.name` is also safe to use because it is listed as a `required` field and therefore certain to exist.
