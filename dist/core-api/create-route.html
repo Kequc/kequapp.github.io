@@ -172,7 +172,7 @@
             <div class="max-w-3xl">
                 <h1 class="text-3xl font-bold mb-6">createRoute</h1>
                 <div class="prose max-w-none mb-24">
-                    <pre><code class="language-javascript">import { createRoute } from &#39;kequapp&#39;;
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createRoute } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 </code></pre>
                     <table>
                         <thead>
@@ -212,10 +212,10 @@
                     </table>
                     <p>A route must specify a method (<code>&#39;GET&#39;</code>, <code>&#39;POST&#39;</code>, etc.) and a url. The url is a pathname that the route should respond to and must always start with <code>&#39;/&#39;</code>.</p>
                     <h3>Example</h3>
-                    <pre><code class="language-javascript">createRoute({
-    method: &#39;POST&#39;,
-    url: &#39;/admin/users&#39;,
-    handles: [loggedIn, () =&gt; &#39;User created!&#39;]
+                    <pre><code class="hljs language-javascript"><span class="hljs-title function_">createRoute</span>({
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/admin/users&#x27;</span>,
+    <span class="hljs-attr">handles</span>: [loggedIn, <span class="hljs-function">() =&gt;</span> <span class="hljs-string">&#x27;User created!&#x27;</span>]
 });
 </code></pre>
                     <p>This example has two handles. One called <code>loggedIn()</code>, then a second that returns a value which is therefore delivered to a renderer.</p>

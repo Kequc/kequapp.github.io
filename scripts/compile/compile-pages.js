@@ -1,12 +1,24 @@
 import fsx from 'fs-extra';
 import path from 'path';
 import beautify from 'js-beautify';
-import { marked } from 'marked';
+import { Marked } from 'marked';
+import { markedHighlight } from "marked-highlight";
+import hljs from 'highlight.js';
 import Mustache from 'mustache';
-import { VERSION, INDEX_URL } from '../../constants.js';
+import { VERSION, INDEX_URL, DIST_FOLDER, TEMPLATES_FOLDER } from '../../constants.js';
+
+const marked = new Marked(
+    markedHighlight({
+        langPrefix: 'hljs language-',
+        highlight(code, lang) {
+            const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+            return hljs.highlight(code, { language }).value;
+        }
+    })
+);
 
 export default async function compilePages(categories) {
-    const templatePath = path.join('./templates', 'layout.mustache');
+    const templatePath = path.join(TEMPLATES_FOLDER, 'layout.mustache');
     const template = await fsx.readFile(templatePath, 'utf8');
     const rendered = await Promise.all(categories.map(categoryRenderer(template, categories)));
     const pages = rendered.reduce((acc, page) => ({ ...acc, ...page }), {});
@@ -17,7 +29,7 @@ export default async function compilePages(categories) {
 async function writePages(pages) {
     await Promise.all(Object.keys(pages).map(async (key) => {
         const html = pages[key];
-        const filePath = path.join('./dist', key === INDEX_URL ? 'index.html' : key);
+        const filePath = path.join(DIST_FOLDER, key === INDEX_URL ? 'index.html' : key);
         await fsx.outputFile(filePath, html, 'utf8');
     }));
 }

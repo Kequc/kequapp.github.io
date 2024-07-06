@@ -174,92 +174,92 @@
                 <div class="prose max-w-none mb-24">
                     <p>Node delivers the body of a request in chunks.</p>
                     <p>It is not necessary to wait for the request to finish before we begin processing it. In most cases, we just want the data and therefore a helper method <code>getBody()</code> is provided which we may use to await body parameters from the completed request.</p>
-                    <pre><code class="language-javascript">// getBody
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// getBody</span>
 
-createRoute({
-    method: &#39;POST&#39;,
-    url: &#39;/users&#39;,
-    handles: [async ({ getBody }) =&gt; {
-        const body = await getBody();
+<span class="hljs-title function_">createRoute</span>({
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users&#x27;</span>,
+    <span class="hljs-attr">handles</span>: [<span class="hljs-keyword">async</span> ({ getBody }) =&gt; {
+        <span class="hljs-keyword">const</span> body = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getBody</span>();
 
-        // body ~= {
-        //     name: &#39;April&#39;
-        // }
+        <span class="hljs-comment">// body ~= {</span>
+        <span class="hljs-comment">//     name: &#x27;April&#x27;</span>
+        <span class="hljs-comment">// }</span>
 
-        return \`User creation \${body.name}!\`;
+        <span class="hljs-keyword">return</span> \<span class="hljs-string">`User creation \${body.name}!\`;
     }]
-});
+});</span>
 </code></pre>
                     <p>It takes an options object which can be used to parse and normalize a client request into useful data in a large assortment of different ways.</p>
                     <h3>multipart</h3>
                     <p>Causes the method to return both <code>body</code> and <code>files</code>. If the client didn&#39;t send any files, or it wasn&#39;t a multipart request the second parameter will be an empty array.</p>
-                    <pre><code class="language-javascript">// multipart
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// multipart</span>
 
-createRoute({
-    method: &#39;POST&#39;,
-    url: &#39;/users&#39;,
-    handles: [async ({ getBody }) =&gt; {
-        const [body, files] = await getBody({ multipart: true });
+<span class="hljs-title function_">createRoute</span>({
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users&#x27;</span>,
+    <span class="hljs-attr">handles</span>: [<span class="hljs-keyword">async</span> ({ getBody }) =&gt; {
+        <span class="hljs-keyword">const</span> [body, files] = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getBody</span>({ <span class="hljs-attr">multipart</span>: <span class="hljs-literal">true</span> });
 
-        // body ~= {
-        //     name: &#39;April&#39;
-        // }
-        // files ~= [{
-        //     headers: {
-        //         &#39;content-disposition&#39;: &#39;form-data; name=&quot;avatar&quot; filename=&quot;my-cat.png&quot;&#39;,
-        //         &#39;content-type&#39;: &#39;image/png;&#39;
-        //     },
-        //     contentType: &#39;image/png&#39;,
-        //     name: &#39;avatar&#39;,
-        //     filename: &#39;my-cat.png&#39;,
-        //     data: Buffer &lt;...&gt;
-        // }]
+        <span class="hljs-comment">// body ~= {</span>
+        <span class="hljs-comment">//     name: &#x27;April&#x27;</span>
+        <span class="hljs-comment">// }</span>
+        <span class="hljs-comment">// files ~= [{</span>
+        <span class="hljs-comment">//     headers: {</span>
+        <span class="hljs-comment">//         &#x27;content-disposition&#x27;: &#x27;form-data; name=&quot;avatar&quot; filename=&quot;my-cat.png&quot;&#x27;,</span>
+        <span class="hljs-comment">//         &#x27;content-type&#x27;: &#x27;image/png;&#x27;</span>
+        <span class="hljs-comment">//     },</span>
+        <span class="hljs-comment">//     contentType: &#x27;image/png&#x27;,</span>
+        <span class="hljs-comment">//     name: &#x27;avatar&#x27;,</span>
+        <span class="hljs-comment">//     filename: &#x27;my-cat.png&#x27;,</span>
+        <span class="hljs-comment">//     data: Buffer &lt;...&gt;</span>
+        <span class="hljs-comment">// }]</span>
 
-        return \`User creation \${body.name}!\`;
+        <span class="hljs-keyword">return</span> \<span class="hljs-string">`User creation \${body.name}!\`;
     }]
-});
+});</span>
 </code></pre>
                     <h3>raw</h3>
                     <p>Causes the body to be processed as minimally as possible and return a single buffer. This is especially useful when our application expects a content type other than <code>&#39;application/x-www-form-urlencoded&#39;</code>, <code>&#39;application/json&#39;</code>, or <code>&#39;multipart/form-data&#39;</code>.</p>
-                    <pre><code class="language-javascript">// raw
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// raw</span>
 
-createRoute({
-    method: &#39;POST&#39;,
-    url: &#39;/users&#39;,
-    handles: [async ({ getBody }) =&gt; {
-        const data = await getBody({ raw: true });
+<span class="hljs-title function_">createRoute</span>({
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users&#x27;</span>,
+    <span class="hljs-attr">handles</span>: [<span class="hljs-keyword">async</span> ({ getBody }) =&gt; {
+        <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getBody</span>({ <span class="hljs-attr">raw</span>: <span class="hljs-literal">true</span> });
 
-        // data ~= Buffer &lt;...&gt;
+        <span class="hljs-comment">// data ~= Buffer &lt;...&gt;</span>
 
-        return &#39;Image received!&#39;;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Image received!&#x27;</span>;
     }]
 });
 </code></pre>
                     <p>When combined with <code>multipart</code>, the body is parsed into an array of separate buffers with their respective headers.</p>
-                    <pre><code class="language-javascript">// raw
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// raw</span>
 
-createRoute({
-    method: &#39;POST&#39;,
-    url: &#39;/users&#39;,
-    handles: [async ({ getBody }) =&gt; {
-        const parts = await getBody({ raw: true, multipart: true });
+<span class="hljs-title function_">createRoute</span>({
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users&#x27;</span>,
+    <span class="hljs-attr">handles</span>: [<span class="hljs-keyword">async</span> ({ getBody }) =&gt; {
+        <span class="hljs-keyword">const</span> parts = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getBody</span>({ <span class="hljs-attr">raw</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">multipart</span>: <span class="hljs-literal">true</span> });
 
-        // parts ~= [{
-        //     headers: {
-        //         &#39;content-disposition&#39;: &#39;form-data; name=&quot;name&quot;&#39;
-        //     },
-        //     data: Buffer &lt;...&gt;
-        // }, {
-        //     headers: {
-        //         &#39;content-disposition&#39;: &#39;form-data; name=&quot;avatar&quot; filename=&quot;my-cat.png&quot;&#39;,
-        //         &#39;content-type&#39;: &#39;image/png;&#39;
-        //     },
-        //     data: Buffer &lt;...&gt;
-        // }]
+        <span class="hljs-comment">// parts ~= [{</span>
+        <span class="hljs-comment">//     headers: {</span>
+        <span class="hljs-comment">//         &#x27;content-disposition&#x27;: &#x27;form-data; name=&quot;name&quot;&#x27;</span>
+        <span class="hljs-comment">//     },</span>
+        <span class="hljs-comment">//     data: Buffer &lt;...&gt;</span>
+        <span class="hljs-comment">// }, {</span>
+        <span class="hljs-comment">//     headers: {</span>
+        <span class="hljs-comment">//         &#x27;content-disposition&#x27;: &#x27;form-data; name=&quot;avatar&quot; filename=&quot;my-cat.png&quot;&#x27;,</span>
+        <span class="hljs-comment">//         &#x27;content-type&#x27;: &#x27;image/png;&#x27;</span>
+        <span class="hljs-comment">//     },</span>
+        <span class="hljs-comment">//     data: Buffer &lt;...&gt;</span>
+        <span class="hljs-comment">// }]</span>
 
-        return \`User creation \${parts[0].data.toString()}!\`;
+        <span class="hljs-keyword">return</span> \<span class="hljs-string">`User creation \${parts[0].data.toString()}!\`;
     }]
-});
+});</span>
 </code></pre>
                     <h3>skipNormalize</h3>
                     <p>By default, the data received is pushed through some body normalization. This is so that the body we receive is in a format we expect and is therefore easier to work with. Normalization is directed by <code>arrays</code>, <code>required</code>, <code>numbers</code>, <code>booleans</code>, and <code>validate</code>.</p>
@@ -267,21 +267,21 @@ createRoute({
                     <h3>arrays</h3>
                     <p>The provided list of fields are converted into arrays.</p>
                     <p>Fields that are not specified will return only the first value. This is because the framework only knows that a field is an array when it receives more than one value for a given name from the client. It would be inconvenient if parameters are sometimes arrays, and therefore we are explicit.</p>
-                    <pre><code class="language-javascript">// arrays
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// arrays</span>
 
-createRoute({
-    method: &#39;POST&#39;,
-    url: &#39;/users&#39;,
-    handles: [async ({ getBody }) =&gt; {
-        const body = await getBody({
-            arrays: [&#39;ownedPets&#39;]
+<span class="hljs-title function_">createRoute</span>({
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users&#x27;</span>,
+    <span class="hljs-attr">handles</span>: [<span class="hljs-keyword">async</span> ({ getBody }) =&gt; {
+        <span class="hljs-keyword">const</span> body = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getBody</span>({
+            <span class="hljs-attr">arrays</span>: [<span class="hljs-string">&#x27;ownedPets&#x27;</span>]
         });
 
-        // body ~= {
-        //     ownedPets: [&#39;cat&#39;],
-        //     age: &#39;23&#39;,
-        //     name: &#39;April&#39;
-        // }
+        <span class="hljs-comment">// body ~= {</span>
+        <span class="hljs-comment">//     ownedPets: [&#x27;cat&#x27;],</span>
+        <span class="hljs-comment">//     age: &#x27;23&#x27;,</span>
+        <span class="hljs-comment">//     name: &#x27;April&#x27;</span>
+        <span class="hljs-comment">// }</span>
     }]
 });
 </code></pre>
@@ -294,37 +294,37 @@ createRoute({
                     <p>The provided list of fields are converted into <code>false</code> if the value is falsy, <code>&#39;0&#39;</code>, or <code>&#39;false&#39;</code> (case insensitive), otherwise <code>true</code>. When a <code>booleans</code> field is also an <code>arrays</code> field the array is all booleans. When a <code>booleans</code> field is also a <code>numbers</code> field the value is first converted to a number and then to a boolean this is not recommended.</p>
                     <h3>validate</h3>
                     <p>After normalization, this method further ensures the validity of the data. Returning anything throws a <code>422 Unprocessable Entity</code> error.</p>
-                    <pre><code class="language-javascript">// validate
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// validate</span>
 
-interface TBody {
-    ownedPets: string[];
-    age: number;
-    name: string;
+interface <span class="hljs-title class_">TBody</span> {
+    <span class="hljs-attr">ownedPets</span>: string[];
+    <span class="hljs-attr">age</span>: number;
+    <span class="hljs-attr">name</span>: string;
 }
 
-createRoute({
-    method: &#39;POST&#39;,
-    url: &#39;/users&#39;,
-    handles: [async ({ getBody }) =&gt; {
-        const body = await getBody&lt;TBody&gt;({
-            arrays: [&#39;ownedPets&#39;],
-            required: [&#39;age&#39;, &#39;name&#39;],
-            numbers: [&#39;age&#39;],
+<span class="hljs-title function_">createRoute</span>({
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users&#x27;</span>,
+    <span class="hljs-attr">handles</span>: [<span class="hljs-keyword">async</span> ({ getBody }) =&gt; {
+        <span class="hljs-keyword">const</span> body = <span class="hljs-keyword">await</span> getBody&lt;<span class="hljs-title class_">TBody</span>&gt;({
+            <span class="hljs-attr">arrays</span>: [<span class="hljs-string">&#x27;ownedPets&#x27;</span>],
+            <span class="hljs-attr">required</span>: [<span class="hljs-string">&#x27;age&#x27;</span>, <span class="hljs-string">&#x27;name&#x27;</span>],
+            <span class="hljs-attr">numbers</span>: [<span class="hljs-string">&#x27;age&#x27;</span>],
             validate (result) {
-                if (result.ownedPets.length &gt; 99) {
-                    return &#39;Too many pets&#39;;
+                <span class="hljs-keyword">if</span> (result.<span class="hljs-property">ownedPets</span>.<span class="hljs-property">length</span> &gt; <span class="hljs-number">99</span>) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Too many pets&#x27;</span>;
                 }
-                if (result.name.length &lt; 3) {
-                    return &#39;Name is too short&#39;;
+                <span class="hljs-keyword">if</span> (result.<span class="hljs-property">name</span>.<span class="hljs-property">length</span> &lt; <span class="hljs-number">3</span>) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Name is too short&#x27;</span>;
                 }
             }
         });
 
-        // body ~= {
-        //     ownedPets: [&#39;Maggie&#39;, &#39;Ralph&#39;],
-        //     age: 23,
-        //     name: &#39;April&#39;
-        // }
+        <span class="hljs-comment">// body ~= {</span>
+        <span class="hljs-comment">//     ownedPets: [&#x27;Maggie&#x27;, &#x27;Ralph&#x27;],</span>
+        <span class="hljs-comment">//     age: 23,</span>
+        <span class="hljs-comment">//     name: &#x27;April&#x27;</span>
+        <span class="hljs-comment">// }</span>
     }]
 });
 </code></pre>

@@ -172,7 +172,7 @@
             <div class="max-w-3xl">
                 <h1 class="text-3xl font-bold mb-6">createErrorHandler</h1>
                 <div class="prose max-w-none mb-24">
-                    <pre><code class="language-javascript">import { createErrorHandler } from &#39;kequapp&#39;;
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createErrorHandler } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 </code></pre>
                     <table>
                         <thead>
@@ -197,10 +197,10 @@
                     </table>
                     <p>An appropriate error handler is invoked whenever a handle throws an exception.</p>
                     <h3>Example</h3>
-                    <pre><code class="language-javascript">createErrorHandler({
-    contentType: &#39;text/*&#39;,
-    handle: (ex, { url }) =&gt; {
-        return `${url.pathname} ${ex.statusCode}: ${ex.message}`;
+                    <pre><code class="hljs language-javascript"><span class="hljs-title function_">createErrorHandler</span>({
+    <span class="hljs-attr">contentType</span>: <span class="hljs-string">&#x27;text/*&#x27;</span>,
+    <span class="hljs-attr">handle</span>: <span class="hljs-function">(<span class="hljs-params">ex, { url }</span>) =&gt;</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${url.pathname}</span> <span class="hljs-subst">${ex.statusCode}</span>: <span class="hljs-subst">${ex.message}</span>`</span>;
     }
 });
 </code></pre>

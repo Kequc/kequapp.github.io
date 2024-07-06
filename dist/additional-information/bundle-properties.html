@@ -180,15 +180,15 @@
                     <h3>url</h3>
                     <p>If we need to know more about what the client is looking at in the url bar we can do so here. It is a <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL">URL</a> instance generated from the <code>req</code> object.</p>
                     <p>Useful for examining the query string, for example by digging into <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams">searchParams</a>.</p>
-                    <pre><code class="language-javascript">createRoute({
-    method: &#39;GET&#39;,
-    url: &#39;/hotels&#39;,
-    handles: [({ url }) =&gt; {
-        const page = url.searchParams.get(&#39;page&#39;);
-        const categories = url.searchParams.getAll(&#39;categories&#39;);
+                    <pre><code class="hljs language-javascript"><span class="hljs-title function_">createRoute</span>({
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/hotels&#x27;</span>,
+    <span class="hljs-attr">handles</span>: [<span class="hljs-function">(<span class="hljs-params">{ url }</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> page = url.<span class="hljs-property">searchParams</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;page&#x27;</span>);
+        <span class="hljs-keyword">const</span> categories = url.<span class="hljs-property">searchParams</span>.<span class="hljs-title function_">getAll</span>(<span class="hljs-string">&#x27;categories&#x27;</span>);
 
-        // page ~= &#39;2&#39;
-        // categories ~= [&#39;ac&#39;, &#39;hottub&#39;]
+        <span class="hljs-comment">// page ~= &#x27;2&#x27;</span>
+        <span class="hljs-comment">// categories ~= [&#x27;ac&#x27;, &#x27;hottub&#x27;]</span>
     }]
 });
 </code></pre>
@@ -202,13 +202,13 @@
                     <p>Param values are always a string.</p>
                     <h3>cookies</h3>
                     <p>Includes helpers for <code>get()</code>, <code>set()</code>, and <code>remove()</code>. The <code>set()</code> method takes an optional third parameter with <code>expires</code>, <code>maxAge</code>, <code>domain</code>, <code>path</code>, <code>secure</code>, <code>httpOnly</code>, <code>partitioned</code>, and <code>sameSite</code>.</p>
-                    <pre><code class="language-javascript">createHandle(({ cookies }) =&gt; {
-    // get a cookie
-    const value: string | undefined = cookies.get(&#39;MyCookie&#39;);
-    // set a cookie
-    cookies.set(&#39;MyCookie&#39;, &#39;NewValue&#39;, { maxAge: 10000 });
-    // remove a cookie
-    cookies.remove(&#39;MyCookie&#39;);
+                    <pre><code class="hljs language-javascript"><span class="hljs-title function_">createHandle</span>(<span class="hljs-function">(<span class="hljs-params">{ cookies }</span>) =&gt;</span> {
+    <span class="hljs-comment">// get a cookie</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-attr">value</span>: string | <span class="hljs-literal">undefined</span> = cookies.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;MyCookie&#x27;</span>);
+    <span class="hljs-comment">// set a cookie</span>
+    cookies.<span class="hljs-title function_">set</span>(<span class="hljs-string">&#x27;MyCookie&#x27;</span>, <span class="hljs-string">&#x27;NewValue&#x27;</span>, { <span class="hljs-attr">maxAge</span>: <span class="hljs-number">10000</span> });
+    <span class="hljs-comment">// remove a cookie</span>
+    cookies.<span class="hljs-title function_">remove</span>(<span class="hljs-string">&#x27;MyCookie&#x27;</span>);
 });
 </code></pre>
                     <h3>logger</h3>

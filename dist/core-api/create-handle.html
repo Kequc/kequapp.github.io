@@ -172,19 +172,19 @@
             <div class="max-w-3xl">
                 <h1 class="text-3xl font-bold mb-6">createHandle</h1>
                 <div class="prose max-w-none mb-24">
-                    <pre><code class="language-javascript">import { createHandle } from &#39;kequapp&#39;;
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createHandle } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 </code></pre>
                     <p>A simple wrapper for a handle the purpose of which is to provide types.</p>
                     <h3>Example</h3>
-                    <pre><code class="language-javascript">const json = createHandle(({ res }) =&gt; {
-    res.setHeader(&#39;Content-Type&#39;, &#39;application/json&#39;);
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> json = <span class="hljs-title function_">createHandle</span>(<span class="hljs-function">(<span class="hljs-params">{ res }</span>) =&gt;</span> {
+    res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;application/json&#x27;</span>);
 });
 
-const loggedIn = createHandle(({ req, context }) =&gt; {
-    if (req.headers.authorization !== &#39;mike&#39;) {
-        throw Ex.Unauthorized();
+<span class="hljs-keyword">const</span> loggedIn = <span class="hljs-title function_">createHandle</span>(<span class="hljs-function">(<span class="hljs-params">{ req, context }</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (req.<span class="hljs-property">headers</span>.<span class="hljs-property">authorization</span> !== <span class="hljs-string">&#x27;mike&#x27;</span>) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-title class_">Ex</span>.<span class="hljs-title class_">Unauthorized</span>();
     }
-    context.auth = req.headers.authorization;
+    context.<span class="hljs-property">auth</span> = req.<span class="hljs-property">headers</span>.<span class="hljs-property">authorization</span>;
 });
 </code></pre>
                     <p>In these examples the <code>json()</code> handle sets the <code>&#39;Content-Type&#39;</code> header to <code>&#39;application/json&#39;</code>, and the <code>loggedIn()</code> handle checks for an <code>&#39;authorization&#39;</code> header from the client. Handles can be asyncronous and always run in sequence.</p>
