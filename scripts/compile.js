@@ -1,11 +1,13 @@
 import fsx from 'fs-extra';
+import path from 'path';
 import getContent from './compile/get-content.js';
 import compilePages from './compile/compile-pages.js';
 import compileSearchIndex from './compile/compile-search-index.js';
+import { ASSETS_FOLDER, DIST_FOLDER } from '../constants.js';
 
 async function main() {
-    await fsx.emptyDir('./dist');
-    await fsx.copy('./assets', './dist/assets');
+    await fsx.emptyDir(DIST_FOLDER);
+    await fsx.copy(ASSETS_FOLDER, path.join(DIST_FOLDER, ASSETS_FOLDER));
 
     const content = await getContent();
     await compilePages(content);

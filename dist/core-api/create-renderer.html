@@ -172,7 +172,7 @@
             <div class="max-w-3xl">
                 <h1 class="text-3xl font-bold mb-6">createRenderer</h1>
                 <div class="prose max-w-none mb-24">
-                    <pre><code class="language-javascript">import { createRenderer } from &#39;kequapp&#39;;
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createRenderer } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 </code></pre>
                     <table>
                         <thead>
@@ -197,20 +197,20 @@
                     </table>
                     <p>An appropriate renderer is invoked whenever a handle returns a value apart from undefined. We may return a value to invoke a renderer or finalize the response ourselves directly, which skips this step.</p>
                     <p>Here is a simple example of an HTML renderer:</p>
-                    <pre><code class="language-javascript">// createRenderer
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// createRenderer</span>
 
-createRenderer({
-    contentType: &#39;text/html&#39;,
-    handle: (payload, { req, res }) =&gt; {
-        const html = myMarkupRenderer(payload);
+<span class="hljs-title function_">createRenderer</span>({
+    <span class="hljs-attr">contentType</span>: <span class="hljs-string">&#x27;text/html&#x27;</span>,
+    <span class="hljs-attr">handle</span>: <span class="hljs-function">(<span class="hljs-params">payload, { req, res }</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> html = <span class="hljs-title function_">myMarkupRenderer</span>(payload);
 
-        res.setHeader(&#39;Content-Length&#39;, Buffer.byteLength(html));
+        res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Content-Length&#x27;</span>, <span class="hljs-title class_">Buffer</span>.<span class="hljs-title function_">byteLength</span>(html));
 
-        // finalize response
-        if (req.method === &#39;HEAD&#39;) {
-            res.end();
-        } else {
-            res.end(html);
+        <span class="hljs-comment">// finalize response</span>
+        <span class="hljs-keyword">if</span> (req.<span class="hljs-property">method</span> === <span class="hljs-string">&#x27;HEAD&#x27;</span>) {
+            res.<span class="hljs-title function_">end</span>();
+        } <span class="hljs-keyword">else</span> {
+            res.<span class="hljs-title function_">end</span>(html);
         }
     }
 });

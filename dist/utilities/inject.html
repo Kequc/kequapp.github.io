@@ -172,56 +172,56 @@
             <div class="max-w-3xl">
                 <h1 class="text-3xl font-bold mb-6">inject</h1>
                 <div class="prose max-w-none mb-24">
-                    <pre><code class="language-javascript">import { inject } from &#39;kequapp&#39;;
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { inject } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 </code></pre>
                     <p>We may unit test our application without starting a server by using the inject() tool. The first parameter is our app, then options used to populate the request.</p>
                     <p>The returned req value is a simulation of Node&#39;s built-in ClientRequest object and is a Transform stream. The returned res value is a simulation of Node&#39;s built-in ServerResponse object and is also a Transform stream. The returned getResponse() tool waits for our application to finish, and then parses the response. It is very similar to getBody() as described earlier. We could inspect what our application is doing using the req and res objects in real-time instead if that&#39;s what we want.</p>
-                    <pre><code class="language-javascript">// inject
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// inject</span>
 
-it(&#39;reads the authorization header&#39;, async () =&gt; {
-    const { getResponse, res } = inject(app, {
-        url: &#39;/admin/dashboard&#39;,
-        headers: {
-            Authorization: &#39;mike&#39;
+<span class="hljs-title function_">it</span>(<span class="hljs-string">&#x27;reads the authorization header&#x27;</span>, <span class="hljs-keyword">async</span> () =&gt; {
+    <span class="hljs-keyword">const</span> { getResponse, res } = <span class="hljs-title function_">inject</span>(app, {
+        <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/admin/dashboard&#x27;</span>,
+        <span class="hljs-attr">headers</span>: {
+            <span class="hljs-title class_">Authorization</span>: <span class="hljs-string">&#x27;mike&#x27;</span>
         }
     });
 
-    const body = await getResponse();
+    <span class="hljs-keyword">const</span> body = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getResponse</span>();
 
-    assert.strictEqual(res.getHeader(&#39;Content-Type&#39;), &#39;text/plain&#39;);
-    assert.strictEqual(body, &#39;Hello admin mike!&#39;);
+    assert.<span class="hljs-title function_">strictEqual</span>(res.<span class="hljs-title function_">getHeader</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>), <span class="hljs-string">&#x27;text/plain&#x27;</span>);
+    assert.<span class="hljs-title function_">strictEqual</span>(body, <span class="hljs-string">&#x27;Hello admin mike!&#x27;</span>);
 });
 </code></pre>
                     <p>All requests are automatically finalized when using inject() unless the body parameter is set to null. Doing this will allow us to write to the stream in cases where more precise testing is necessary.</p>
                     <p>The following two examples are the same.</p>
-                    <pre><code class="language-javascript">// inject
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// inject</span>
 
-const { getResponse } = inject(app, {
-    method: &#39;POST&#39;,
-    url: &#39;/users&#39;,
-    headers: {
-        &#39;Content-Type&#39;: &#39;application/json&#39;
+<span class="hljs-keyword">const</span> { getResponse } = <span class="hljs-title function_">inject</span>(app, {
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users&#x27;</span>,
+    <span class="hljs-attr">headers</span>: {
+        <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>
     },
-    body: &#39;{ &quot;name&quot;: &quot;April&quot; }&#39;
+    <span class="hljs-attr">body</span>: <span class="hljs-string">&#x27;{ &quot;name&quot;: &quot;April&quot; }&#x27;</span>
 });
 
-const body = await getResponse();
+<span class="hljs-keyword">const</span> body = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getResponse</span>();
 </code></pre>
-                    <pre><code class="language-javascript">// inject
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// inject</span>
 
-const { getResponse, req } = inject(app, {
-    method: &#39;POST&#39;,
-    url: &#39;/users&#39;,
-    headers: {
-        &#39;Content-Type&#39;: &#39;application/json&#39;
+<span class="hljs-keyword">const</span> { getResponse, req } = <span class="hljs-title function_">inject</span>(app, {
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users&#x27;</span>,
+    <span class="hljs-attr">headers</span>: {
+        <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>
     },
-    body: null
+    <span class="hljs-attr">body</span>: <span class="hljs-literal">null</span>
 });
 
-// finalize request
-req.end(&#39;{ &quot;name&quot;: &quot;April&quot; }&#39;);
+<span class="hljs-comment">// finalize request</span>
+req.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;{ &quot;name&quot;: &quot;April&quot; }&#x27;</span>);
 
-const body = await getResponse();
+<span class="hljs-keyword">const</span> body = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getResponse</span>();
 </code></pre>
                     <p>Note that getResponse() will not resolve until the request is finalized.</p>
                 </div>

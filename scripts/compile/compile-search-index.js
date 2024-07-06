@@ -1,5 +1,6 @@
 import fsx from 'fs-extra';
 import path from 'path';
+import { DIST_FOLDER } from '../../constants.js';
 
 export default async function compileSearchIndex(categories) {
     const searchIndex = categories.map(category => {
@@ -14,7 +15,7 @@ export default async function compileSearchIndex(categories) {
 }
 
 async function writeSearchIndex(searchIndex) {
-    const filePath = path.join('./dist', 'assets', 'search-index.json');
+    const filePath = path.join(DIST_FOLDER, 'assets', 'search-index.json');
     await fsx.writeJson(filePath, searchIndex);
 }
 

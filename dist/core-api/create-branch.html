@@ -172,7 +172,7 @@
             <div class="max-w-3xl">
                 <h1 class="text-3xl font-bold mb-6">createBranch</h1>
                 <div class="prose max-w-none mb-24">
-                    <pre><code class="language-javascript">import { createBranch } from &#39;kequapp&#39;;
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createBranch } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 </code></pre>
                     <table>
                         <thead>
@@ -227,30 +227,30 @@
                     </table>
                     <p>A branch of the application will distribute the given options, handles, error handlers, and renderers through a section of branches and routes.</p>
                     <h3>Example</h3>
-                    <pre><code class="language-javascript">createBranch({
-    branches: [
+                    <pre><code class="hljs language-javascript"><span class="hljs-title function_">createBranch</span>({
+    <span class="hljs-attr">branches</span>: [
         {
-            url: &#39;/api/users&#39;,
-            handles: [json],
-            routes: [
+            <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/api/users&#x27;</span>,
+            <span class="hljs-attr">handles</span>: [json],
+            <span class="hljs-attr">routes</span>: [
                 {
-                    method: &#39;GET&#39;,
-                    url: &#39;/&#39;,
-                    handles: [() =&gt; ({ result: [] })]
+                    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+                    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/&#x27;</span>,
+                    <span class="hljs-attr">handles</span>: [<span class="hljs-function">() =&gt;</span> ({ <span class="hljs-attr">result</span>: [] })]
                 },
                 {
-                    method: &#39;GET&#39;,
-                    url: &#39;/:id&#39;,
-                    handles: [({ params }) =&gt; ({ userId: params.id })]
+                    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+                    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/:id&#x27;</span>,
+                    <span class="hljs-attr">handles</span>: [<span class="hljs-function">(<span class="hljs-params">{ params }</span>) =&gt;</span> ({ <span class="hljs-attr">userId</span>: params.<span class="hljs-property">id</span> })]
                 }
             ]
         }
     ],
-    routes: [
+    <span class="hljs-attr">routes</span>: [
         {
-            method: &#39;GET&#39;,
-            url: &#39;/admin/dashboard&#39;,
-            handles: [loggedIn, ({ context }) =&gt; `Hello admin ${context.auth}`]
+            <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+            <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/admin/dashboard&#x27;</span>,
+            <span class="hljs-attr">handles</span>: [loggedIn, <span class="hljs-function">(<span class="hljs-params">{ context }</span>) =&gt;</span> <span class="hljs-string">`Hello admin <span class="hljs-subst">${context.auth}</span>`</span>]
         }
     ]
 });

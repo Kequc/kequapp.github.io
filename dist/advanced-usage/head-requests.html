@@ -174,14 +174,14 @@
                 <div class="prose max-w-none mb-24">
                     <p>By default, if a HEAD request has no matching route, our application will use a matching GET route in its place. Therefore it is important to keep in mind that HEAD requests follow the same flow as GET requests in our application.</p>
                     <p>Occasionally, we may need to differentiate between the two as it is generally understood that a HEAD request does not modify data. In this case, looking at the value of req.method can be useful.</p>
-                    <pre><code class="language-javascript">// HEAD
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// HEAD</span>
 
-createRoute({
-    method: &#39;GET&#39;,
-    url: &#39;/api/users&#39;,
-    handles: [({ req }) =&gt; {
-        if (req.method === &#39;HEAD&#39;) {
-            // head request
+<span class="hljs-title function_">createRoute</span>({
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/api/users&#x27;</span>,
+    <span class="hljs-attr">handles</span>: [<span class="hljs-function">(<span class="hljs-params">{ req }</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (req.<span class="hljs-property">method</span> === <span class="hljs-string">&#x27;HEAD&#x27;</span>) {
+            <span class="hljs-comment">// head request</span>
         }
     }]
 });

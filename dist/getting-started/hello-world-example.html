@@ -173,23 +173,23 @@
                 <h1 class="text-3xl font-bold mb-6">Hello World Example</h1>
                 <div class="prose max-w-none mb-24">
                     <p>Here&#39;s a simple example to get you started with Kequapp:</p>
-                    <pre><code class="language-javascript">// hello world!
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// hello world!</span>
 
-import { createServer } from &#39;http&#39;;
-import { createApp } from &#39;kequapp&#39;;
+<span class="hljs-keyword">import</span> { createServer } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;http&#x27;</span>;
+<span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 
-const app = createApp({
-    routes: [
+<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">createApp</span>({
+    <span class="hljs-attr">routes</span>: [
         {
-            method: &#39;GET&#39;,
-            url: &#39;/&#39;,
-            handles: [() =&gt; &#39;Hello world!&#39;]
+            <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+            <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/&#x27;</span>,
+            <span class="hljs-attr">handles</span>: [<span class="hljs-function">() =&gt;</span> <span class="hljs-string">&#x27;Hello world!&#x27;</span>]
         }
     ]
 });
 
-createServer(app).listen(4000, () =&gt; {
-    console.log(&#39;Server running at http://localhost:4000&#39;);
+<span class="hljs-title function_">createServer</span>(app).<span class="hljs-title function_">listen</span>(<span class="hljs-number">4000</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Server running at http://localhost:4000&#x27;</span>);
 });
 </code></pre>
                     <p>This example responds to all &#39;GET&#39; and &#39;HEAD&#39; requests made to &#39;/&#39;, otherwise a 404 Not Found error will be thrown. The framework comes with a built-in error handler and some renderers, so for now, this is all we need.</p>

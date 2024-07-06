@@ -1,8 +1,9 @@
 import fsx from 'fs-extra';
 import path from 'path';
+import { CONTENT_FOLDER } from '../../constants.js';
 
 export default async function getContent() {
-    const directories = await fsx.readdir('./content');
+    const directories = await fsx.readdir(CONTENT_FOLDER);
     const categories = await Promise.all(directories.map(buildCategory));
 
     for (const category of categories) {
@@ -16,7 +17,7 @@ export default async function getContent() {
 async function buildCategory(directory) {
     const [_, categoryOrder, directorySlug] = directory.match(/^(\d+)-(.+)$/);
     const categoryTitle = formatCategory(directorySlug);
-    const files = await fsx.readdir(path.join('./content', directory));
+    const files = await fsx.readdir(path.join(CONTENT_FOLDER, directory));
     const pages = await Promise.all(files.map(file => buildPage(directory, file)));
 
     return {
@@ -29,7 +30,7 @@ async function buildCategory(directory) {
 
 async function buildPage(directory, file) {
     const [__, order, fileSlug] = file.match(/^(\d+)-(.+)\.md$/);
-    const filePath = path.join('./content', directory, file);
+    const filePath = path.join(CONTENT_FOLDER, directory, file);
     const fileContent = await fsx.readFile(filePath, 'utf8');
     const { title, content } = extractTitleAndContent(fileContent);
 

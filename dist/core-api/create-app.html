@@ -172,16 +172,16 @@
             <div class="max-w-3xl">
                 <h1 class="text-3xl font-bold mb-6">createApp</h1>
                 <div class="prose max-w-none mb-24">
-                    <pre><code class="language-javascript">import { createApp } from &#39;kequapp&#39;;
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 </code></pre>
                     <p>This prepares our application for use as the event handler in Node&#39;s <code>createServer()</code> method. It is otherwise identical to the <code>createBranch()</code> method.</p>
                     <h3>Example</h3>
-                    <pre><code class="language-javascript">const app = createApp({
-    routes: [
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">createApp</span>({
+    <span class="hljs-attr">routes</span>: [
         {
-            method: &#39;GET&#39;,
-            url: &#39;/&#39;,
-            handles: [() =&gt; &#39;Hello world!&#39;]
+            <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+            <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/&#x27;</span>,
+            <span class="hljs-attr">handles</span>: [<span class="hljs-function">() =&gt;</span> <span class="hljs-string">&#x27;Hello world!&#x27;</span>]
         }
     ]
 });

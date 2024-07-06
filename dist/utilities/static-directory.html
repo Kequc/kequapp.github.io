@@ -172,24 +172,24 @@
             <div class="max-w-3xl">
                 <h1 class="text-3xl font-bold mb-6">staticDirectory</h1>
                 <div class="prose max-w-none mb-24">
-                    <pre><code class="language-javascript">import { staticDirectory } from &#39;kequapp&#39;;
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { staticDirectory } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 </code></pre>
                     <p>Pairs a wild parameter with a static directory relative to the root of our project.</p>
-                    <pre><code class="language-javascript">// staticDirectory
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// staticDirectory</span>
 
-const staticAssets = staticDirectory({
-    location: &#39;/my-assets-dir&#39;,
-    contentTypes: {
-        &#39;.3gp&#39;: &#39;audio/3gpp&#39;
+<span class="hljs-keyword">const</span> staticAssets = <span class="hljs-title function_">staticDirectory</span>({
+    <span class="hljs-attr">location</span>: <span class="hljs-string">&#x27;/my-assets-dir&#x27;</span>,
+    <span class="hljs-attr">contentTypes</span>: {
+        <span class="hljs-string">&#x27;.3gp&#x27;</span>: <span class="hljs-string">&#x27;audio/3gpp&#x27;</span>
     }
 });
 
-createApp({
-    routes: [
+<span class="hljs-title function_">createApp</span>({
+    <span class="hljs-attr">routes</span>: [
         {
-            method: &#39;GET&#39;,
-            url: &#39;/assets/**&#39;,
-            handles: [staticAssets]
+            <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+            <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/assets/**&#x27;</span>,
+            <span class="hljs-attr">handles</span>: [staticAssets]
         }
     ]
 });
@@ -197,22 +197,22 @@ createApp({
                     <p>The url should end with &#39;/**&#39; capturing all possible paths.</p>
                     <p>A &#39;Content-Type&#39; header is guessed based on every asset&#39;s file extension. If there are assets in the directory with unusual file extensions, then additional contentTypes may be provided. Exclusions can be provided if we want to ignore certain requests, or headers for assets can be set by using a handle.</p>
                     <p>An array of index files, for example [&#39;index.html&#39;], may be provided to resolve when the location is a directory.</p>
-                    <pre><code class="language-javascript">// staticDirectory
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// staticDirectory</span>
 
-const prepare = createHandle(({ res, params }) =&gt; {
-    res.setHeader(&#39;Cache-Control&#39;, &#39;max-age=604800&#39;);
+<span class="hljs-keyword">const</span> prepare = <span class="hljs-title function_">createHandle</span>(<span class="hljs-function">(<span class="hljs-params">{ res, params }</span>) =&gt;</span> {
+    res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Cache-Control&#x27;</span>, <span class="hljs-string">&#x27;max-age=604800&#x27;</span>);
 
-    if (params.wild === &#39;/secret.txt&#39;) {
-        throw Ex.NotFound();
+    <span class="hljs-keyword">if</span> (params.<span class="hljs-property">wild</span> === <span class="hljs-string">&#x27;/secret.txt&#x27;</span>) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-title class_">Ex</span>.<span class="hljs-title class_">NotFound</span>();
     }
 });
 
-createApp({
-    routes: [
+<span class="hljs-title function_">createApp</span>({
+    <span class="hljs-attr">routes</span>: [
         {
-            method: &#39;GET&#39;,
-            url: &#39;/assets/**&#39;,
-            handles: [prepare, staticAssets]
+            <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+            <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/assets/**&#x27;</span>,
+            <span class="hljs-attr">handles</span>: [prepare, staticAssets]
         }
     ]
 });

@@ -172,22 +172,22 @@
             <div class="max-w-3xl">
                 <h1 class="text-3xl font-bold mb-6">sendFile</h1>
                 <div class="prose max-w-none mb-24">
-                    <pre><code class="language-javascript">import { sendFile } from &#39;kequapp&#39;;
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { sendFile } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 </code></pre>
                     <p>Sends a file and finalizes the response.</p>
                     <p>This is asynchronous and must be awaited; otherwise, the application might get confused as it continues processing the request unexpectedly.</p>
-                    <pre><code class="language-javascript">// sendFile
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// sendFile</span>
 
-const serveDb = createHandle(async ({ req, res }) =&gt; {
-    await sendFile(req, res, &#39;/db/my-db.json&#39;);
+<span class="hljs-keyword">const</span> serveDb = <span class="hljs-title function_">createHandle</span>(<span class="hljs-keyword">async</span> ({ req, res }) =&gt; {
+    <span class="hljs-keyword">await</span> <span class="hljs-title function_">sendFile</span>(req, res, <span class="hljs-string">&#x27;/db/my-db.json&#x27;</span>);
 });
 
-createApp({
-    routes: [
+<span class="hljs-title function_">createApp</span>({
+    <span class="hljs-attr">routes</span>: [
         {
-            method: &#39;GET&#39;,
-            url: &#39;/db.json&#39;,
-            handles: [serveDb],
+            <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+            <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/db.json&#x27;</span>,
+            <span class="hljs-attr">handles</span>: [serveDb],
         }
     ]
 });

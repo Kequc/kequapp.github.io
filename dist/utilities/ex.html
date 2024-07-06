@@ -172,20 +172,20 @@
             <div class="max-w-3xl">
                 <h1 class="text-3xl font-bold mb-6">Ex</h1>
                 <div class="prose max-w-none mb-24">
-                    <pre><code class="language-javascript">import { Ex } from &#39;kequapp&#39;;
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Ex</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 </code></pre>
                     <p>An unhandled exception from our application results in a 500 Internal Server Error. If we would like an error with a different status code, there is a helper tool for that.</p>
-                    <pre><code class="language-javascript">// Ex
+                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// Ex</span>
 
-createRoute({
-    method: &#39;GET&#39;,
-    url: &#39;/throw-error&#39;,
-    handles: [() =&gt; {
-        throw Ex.NotFound();
-        throw Ex.NotFound(&#39;Custom message&#39;, { extra: &#39;info&#39; });
-        // same as
-        throw Ex.StatusCode(404);
-        throw Ex.StatusCode(404, &#39;Custom message&#39;, { extra: &#39;info&#39; });
+<span class="hljs-title function_">createRoute</span>({
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/throw-error&#x27;</span>,
+    <span class="hljs-attr">handles</span>: [<span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-keyword">throw</span> <span class="hljs-title class_">Ex</span>.<span class="hljs-title class_">NotFound</span>();
+        <span class="hljs-keyword">throw</span> <span class="hljs-title class_">Ex</span>.<span class="hljs-title class_">NotFound</span>(<span class="hljs-string">&#x27;Custom message&#x27;</span>, { <span class="hljs-attr">extra</span>: <span class="hljs-string">&#x27;info&#x27;</span> });
+        <span class="hljs-comment">// same as</span>
+        <span class="hljs-keyword">throw</span> <span class="hljs-title class_">Ex</span>.<span class="hljs-title class_">StatusCode</span>(<span class="hljs-number">404</span>);
+        <span class="hljs-keyword">throw</span> <span class="hljs-title class_">Ex</span>.<span class="hljs-title class_">StatusCode</span>(<span class="hljs-number">404</span>, <span class="hljs-string">&#x27;Custom message&#x27;</span>, { <span class="hljs-attr">extra</span>: <span class="hljs-string">&#x27;info&#x27;</span> });
     }]
 });
 </code></pre>
