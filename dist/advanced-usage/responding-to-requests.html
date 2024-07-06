@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responding to Requests - Kequapp Documentation</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     <link href="/assets/style.css" rel="stylesheet">
     <script src="/assets/search.js" defer></script>
 </head>
@@ -93,8 +94,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/core-api/create-handle.html" class="text-gray-300 hover:text-green-400 w-full block py-1">
-                                createHandle
+                            <a href="/core-api/create-action.html" class="text-gray-300 hover:text-green-400 w-full block py-1">
+                                createAction
                             </a>
                         </li>
                         <li>
@@ -178,14 +179,14 @@
                 <!-- Main content -->
                 <h1 class="text-white text-3xl mb-8"># Responding to Requests</h1>
                 <div class="prose prose-invert max-w-none">
-                    <p>Any handle may terminate a request one of three ways:</p>
+                    <p>Any action may terminate a request one of three ways:</p>
                     <ol>
                         <li><strong>Throw an error</strong> - An error handler is invoked.</li>
                         <li><strong>Return a value</strong> - A renderer is invoked.</li>
                         <li><strong>Finalize the response</strong></li>
                     </ol>
                     <p>Finalizing a response is for cases where we need the most control. It allows us to terminate the response any way we want without invoking a renderer.</p>
-                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> authenticated = <span class="hljs-title function_">createHandle</span>(<span class="hljs-function">(<span class="hljs-params">{ req, res }</span>) =&gt;</span> {
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> authenticated = <span class="hljs-title function_">createAction</span>(<span class="hljs-function">(<span class="hljs-params">{ req, res }</span>) =&gt;</span> {
     <span class="hljs-comment">// must be authenticated!</span>
 
     <span class="hljs-keyword">if</span> (!req.<span class="hljs-property">headers</span>.<span class="hljs-property">authorization</span>) {
@@ -193,7 +194,7 @@
         res.<span class="hljs-property">statusCode</span> = <span class="hljs-number">302</span>;
         res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Location&#x27;</span>, <span class="hljs-string">&#x27;/login&#x27;</span>);
 
-        <span class="hljs-comment">// finalize response to ignore remaining handles</span>
+        <span class="hljs-comment">// finalize response to ignore remaining actions</span>
         res.<span class="hljs-title function_">end</span>();
     }
 });
@@ -201,7 +202,7 @@
 <span class="hljs-title function_">createRoute</span>({
     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
     <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/api/users&#x27;</span>,
-    <span class="hljs-attr">handles</span>: [authenticated, json, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-attr">actions</span>: [authenticated, json, <span class="hljs-function">() =&gt;</span> {
         <span class="hljs-comment">// return a value to invoke a renderer</span>
         <span class="hljs-keyword">return</span> {
             <span class="hljs-attr">users</span>: [{ <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;April&#x27;</span> }, { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Leo&#x27;</span> }]
@@ -209,8 +210,8 @@
     }]
 });
 </code></pre>
-                    <p>In this example if the client did not provide an &#39;authorization&#39; header, the authenticated() handle will finalize the response. This terminates the request and skips all remaining handles. Otherwise the json() handle sets the &#39;Content-Type&#39; header of the response to &#39;application/json&#39;.</p>
-                    <p>The last remaining handle returns a value. This invokes a renderer best matching the &#39;Content-Type&#39; header, in this example a renderer matching &#39;application/json&#39; will be used. The appropriate renderer will finalize a response to the client.</p>
+                    <p>In this example if the client did not provide an &#39;authorization&#39; header, the authenticated() action will finalize the response. This terminates the request and skips all remaining actions. Otherwise the json() action sets the &#39;Content-Type&#39; header of the response to &#39;application/json&#39;.</p>
+                    <p>The last remaining action returns a value. This invokes a renderer best matching the &#39;Content-Type&#39; header, in this example a renderer matching &#39;application/json&#39; will be used. The appropriate renderer will finalize a response to the client.</p>
                 </div>
             </main>
         </div>

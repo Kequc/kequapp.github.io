@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bundle Properties - Kequapp Documentation</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     <link href="/assets/style.css" rel="stylesheet">
     <script src="/assets/search.js" defer></script>
 </head>
@@ -93,8 +94,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/core-api/create-handle.html" class="text-gray-300 hover:text-green-400 w-full block py-1">
-                                createHandle
+                            <a href="/core-api/create-action.html" class="text-gray-300 hover:text-green-400 w-full block py-1">
+                                createAction
                             </a>
                         </li>
                         <li>
@@ -189,7 +190,7 @@
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">createRoute</span>({
     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
     <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/hotels&#x27;</span>,
-    <span class="hljs-attr">handles</span>: [<span class="hljs-function">(<span class="hljs-params">{ url }</span>) =&gt;</span> {
+    <span class="hljs-attr">actions</span>: [<span class="hljs-function">(<span class="hljs-params">{ url }</span>) =&gt;</span> {
         <span class="hljs-keyword">const</span> page = url.<span class="hljs-property">searchParams</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;page&#x27;</span>);
         <span class="hljs-keyword">const</span> categories = url.<span class="hljs-property">searchParams</span>.<span class="hljs-title function_">getAll</span>(<span class="hljs-string">&#x27;categories&#x27;</span>);
 
@@ -201,14 +202,14 @@
                     <h3>methods</h3>
                     <p>An array of methods available in our app at the current url.</p>
                     <h3>context</h3>
-                    <p>A place to store variables derived by handles, we might use these variables elsewhere in our code. Changes can be made here whenever we want and it may be populated with anything.</p>
+                    <p>A place to store variables derived by actions, we might use these variables elsewhere in our code. Changes can be made here whenever we want and it may be populated with anything.</p>
                     <p>Maybe authentication details, a user object, or any data that&#39;s used in other places.</p>
                     <h3>params</h3>
                     <p>When defining a route we can specify parameters to extract by prefixing a colon <code>&#39;:&#39;</code> character in the url. If we specify a route such as <code>&#39;/users/:userId&#39;</code> we will have a <code>params</code> item called <code>&#39;userId&#39;</code>. Use a double asterisk <code>&#39;/**&#39;</code> to accept anything for the remainder of the url, we will have a <code>params</code> item called <code>&#39;wild&#39;</code>.</p>
                     <p>Param values are always a string.</p>
                     <h3>cookies</h3>
                     <p>Includes helpers for <code>get()</code>, <code>set()</code>, and <code>remove()</code>. The <code>set()</code> method takes an optional third parameter with <code>expires</code>, <code>maxAge</code>, <code>domain</code>, <code>path</code>, <code>secure</code>, <code>httpOnly</code>, <code>partitioned</code>, and <code>sameSite</code>.</p>
-                    <pre><code class="hljs language-javascript"><span class="hljs-title function_">createHandle</span>(<span class="hljs-function">(<span class="hljs-params">{ cookies }</span>) =&gt;</span> {
+                    <pre><code class="hljs language-javascript"><span class="hljs-title function_">createAction</span>(<span class="hljs-function">(<span class="hljs-params">{ cookies }</span>) =&gt;</span> {
     <span class="hljs-comment">// get a cookie</span>
     <span class="hljs-keyword">const</span> <span class="hljs-attr">value</span>: string | <span class="hljs-literal">undefined</span> = cookies.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;MyCookie&#x27;</span>);
     <span class="hljs-comment">// set a cookie</span>

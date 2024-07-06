@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sendFile - Kequapp Documentation</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     <link href="/assets/style.css" rel="stylesheet">
     <script src="/assets/search.js" defer></script>
 </head>
@@ -93,8 +94,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/core-api/create-handle.html" class="text-gray-300 hover:text-green-400 w-full block py-1">
-                                createHandle
+                            <a href="/core-api/create-action.html" class="text-gray-300 hover:text-green-400 w-full block py-1">
+                                createAction
                             </a>
                         </li>
                         <li>
@@ -182,7 +183,7 @@
 </code></pre>
                     <p>Sends a file and finalizes the response.</p>
                     <p>This is asynchronous and must be awaited; otherwise, the application might get confused as it continues processing the request unexpectedly.</p>
-                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> serveDb = <span class="hljs-title function_">createHandle</span>(<span class="hljs-keyword">async</span> ({ req, res }) =&gt; {
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> serveDb = <span class="hljs-title function_">createAction</span>(<span class="hljs-keyword">async</span> ({ req, res }) =&gt; {
     <span class="hljs-keyword">await</span> <span class="hljs-title function_">sendFile</span>(req, res, <span class="hljs-string">&#x27;/db/my-db.json&#x27;</span>);
 });
 
@@ -191,7 +192,7 @@
         {
             <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
             <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/db.json&#x27;</span>,
-            <span class="hljs-attr">handles</span>: [serveDb],
+            <span class="hljs-attr">actions</span>: [serveDb],
         }
     ]
 });

@@ -14,7 +14,7 @@ const app = createApp({
         {
             method: 'GET',
             url: '/',
-            handles: [() => 'Hello world!']
+            actions: [() => 'Hello world!']
         }
     ]
 });
@@ -22,7 +22,7 @@ const app = createApp({
 
 ### createBranch()
 
-The `createBranch` function allows you to organize your routes and middleware into logical sections, or branches. Each branch can have its own set of routes, handles, error handlers, and renderers.
+The `createBranch` function allows you to organize your routes and middleware into logical sections, or branches. Each branch can have its own set of routes, actions, error handlers, and renderers.
 
 ```javascript
 import { createBranch } from 'kequapp';
@@ -33,7 +33,7 @@ const userBranch = createBranch({
         {
             method: 'GET',
             url: '/',
-            handles: [() => ({ users: [] })]
+            actions: [() => ({ users: [] })]
         }
     ]
 });
@@ -49,45 +49,45 @@ import { createRoute } from 'kequapp';
 const getUserRoute = createRoute({
     method: 'GET',
     url: '/users/:id',
-    handles: [({ params }) => ({ userId: params.id })]
+    actions: [({ params }) => ({ userId: params.id })]
 });
 ```
 
-### createHandle()
+### createAction()
 
-Handles are functions that process requests. They can modify the request and response objects, perform authentication, validation, or any other processing needed. Handles are executed in sequence.
+actions are functions that process requests. They can modify the request and response objects, perform authentication, validation, or any other processing needed. actions are executed in sequence.
 
 ```javascript
-import { createHandle } from 'kequapp';
+import { createAction } from 'kequapp';
 
-const jsonHandle = createHandle(({ res }) => {
+const jsonHandle = createAction(({ res }) => {
     res.setHeader('Content-Type', 'application/json');
 });
 ```
 
 ### createErrorHandler()
 
-Error handlers are invoked when a handle throws an exception. They turn errors into useful information that is sent to the client. You can create custom error handlers to provide better error responses.
+Error handlers are invoked when an action throws an exception. They turn errors into useful information that is sent to the client. You can create custom error handlers to provide better error responses.
 
 ```javascript
 import { createErrorHandler } from 'kequapp';
 
 const textErrorHandler = createErrorHandler({
     contentType: 'text/*',
-    handle: (ex, { url }) => `${url.pathname} ${ex.statusCode}: ${ex.message}`
+    action: (ex, { url }) => `${url.pathname} ${ex.statusCode}: ${ex.message}`
 });
 ```
 
 ### createRenderer()
 
-Renderers are responsible for finalizing the response to the client. When a handle returns a value, a renderer is invoked to send the response. You can create custom renderers for different content types.
+Renderers are responsible for finalizing the response to the client. When an action returns a value, a renderer is invoked to send the response. You can create custom renderers for different content types.
 
 ```javascript
 import { createRenderer } from 'kequapp';
 
 const htmlRenderer = createRenderer({
     contentType: 'text/html',
-    handle: (payload, { req, res }) => {
+    action: (payload, { req, res }) => {
         const html = myMarkupRenderer(payload);
 
         res.setHeader('Content-Length', Buffer.byteLength(html));

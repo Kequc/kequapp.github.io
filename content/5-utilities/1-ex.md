@@ -10,7 +10,7 @@ An unhandled exception from our application results in a 500 Internal Server Err
 createRoute({
     method: 'GET',
     url: '/throw-error',
-    handles: [() => {
+    actions: [() => {
         throw Ex.NotFound();
         throw Ex.NotFound('Custom message', { extra: 'info' });
         // same as

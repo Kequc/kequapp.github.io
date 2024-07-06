@@ -8,7 +8,7 @@ It is not necessary to wait for the request to finish before we begin processing
 createRoute({
     method: 'POST',
     url: '/users',
-    handles: [async ({ getBody }) => {
+    actions: [async ({ getBody }) => {
         const body = await getBody();
 
         // body ~= {
@@ -30,7 +30,7 @@ Causes the method to return both `body` and `files`. If the client didn't send a
 createRoute({
     method: 'POST',
     url: '/users',
-    handles: [async ({ getBody }) => {
+    actions: [async ({ getBody }) => {
         const [body, files] = await getBody({ multipart: true });
 
         // body ~= {
@@ -60,7 +60,7 @@ Causes the body to be processed as minimally as possible and return a single buf
 createRoute({
     method: 'POST',
     url: '/users',
-    handles: [async ({ getBody }) => {
+    actions: [async ({ getBody }) => {
         const data = await getBody({ raw: true });
 
         // data ~= Buffer <...>
@@ -76,7 +76,7 @@ When combined with `multipart`, the body is parsed into an array of separate buf
 createRoute({
     method: 'POST',
     url: '/users',
-    handles: [async ({ getBody }) => {
+    actions: [async ({ getBody }) => {
         const parts = await getBody({ raw: true, multipart: true });
 
         // parts ~= [{
@@ -113,7 +113,7 @@ Fields that are not specified will return only the first value. This is because 
 createRoute({
     method: 'POST',
     url: '/users',
-    handles: [async ({ getBody }) => {
+    actions: [async ({ getBody }) => {
         const body = await getBody({
             arrays: ['ownedPets']
         });
@@ -155,7 +155,7 @@ interface TBody {
 createRoute({
     method: 'POST',
     url: '/users',
-    handles: [async ({ getBody }) => {
+    actions: [async ({ getBody }) => {
         const body = await getBody<TBody>({
             arrays: ['ownedPets'],
             required: ['age', 'name'],

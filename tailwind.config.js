@@ -16,6 +16,8 @@ module.exports = {
                 color: theme('colors.green.300'),
               },
             },
+            'code::before': false,
+            'code::after': false,
             h1: {
               color: theme('colors.gray.100'),
             },
