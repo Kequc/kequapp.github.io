@@ -7,11 +7,13 @@ import { createRenderer } from 'kequapp';
 | key | description | default |
 | ---- | ---- | ---- |
 | **contentType \*** | *Content type* | |
-| **action \*** | *Handler* | |
+| **action \*** | *Action* | |
 
-An appropriate renderer is invoked whenever an action returns a value apart from undefined. We may return a value to invoke a renderer or finalize the response ourselves directly, which skips this step.
+Renderers are responsible for finalizing the response to the client. When an action returns a value, a renderer is invoked to send the response. You can create custom renderers for different content types.
 
-Here is a simple example of an HTML renderer:
+The `createRenderer` function must specify a content type (`'application/json'`, `'text/html'`, etc.) and an action to manipulate the information into a response.
+
+The first parameter of an renderer is the value that was returned. Here is a simple example of an HTML renderer:
 
 ```javascript
 createRenderer({
@@ -31,4 +33,6 @@ createRenderer({
 });
 ```
 
-For good examples of how to write a renderer see this repo's /src/built-in directory.
+For good examples of how to write a renderer see this repo's <a href="https://github.com/Kequc/kequapp/tree/main/src/built-in" target="_blank">/src/built-in</a> directory.
+
+Kequapp comes with a renderer for `'application/json'` and `'text/*'`, however these can be overriden by writting renderers of your own with those content types.

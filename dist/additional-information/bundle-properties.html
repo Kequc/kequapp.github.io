@@ -179,14 +179,14 @@
                 <!-- Main content -->
                 <h1 class="text-white text-3xl mb-8"># Bundle Properties</h1>
                 <div class="prose prose-invert max-w-none pb-8">
-                    <p>Properties such as <code>req</code>, <code>res</code>, and <code>context</code> are found throughout the examples above. These properties are generated for every request and available in every route, renderer, and error handler.</p>
+                    <p>Properties such as <code>req</code>, <code>res</code>, and <code>context</code> are found throughout the examples. These properties are generated for every request and available in every action.</p>
                     <h3>req</h3>
-                    <p>Node&#39;s <a href="https://nodejs.org/api/http.html#class-httpclientrequest">ClientRequest</a> object. It is not modified by this framework so we can rely on the official documentation to use it. This represents the client request.</p>
+                    <p>Node&#39;s <a href="https://nodejs.org/api/http.html#class-httpclientrequest" target="_blank">ClientRequest</a> object. It is not modified by this framework so we can rely on the official documentation to use it. This represents the client request.</p>
                     <h3>res</h3>
-                    <p>Node&#39;s <a href="https://nodejs.org/api/http.html#class-httpserverresponse">ServerResponse</a> object. It is not modified by this framework so we can rely on the official documentation to use it. This represents the server response.</p>
+                    <p>Node&#39;s <a href="https://nodejs.org/api/http.html#class-httpserverresponse" target="_blank">ServerResponse</a> object. It is not modified by this framework so we can rely on the official documentation to use it. This represents the server response.</p>
                     <h3>url</h3>
-                    <p>If we need to know more about what the client is looking at in the url bar we can do so here. It is a <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL">URL</a> instance generated from the <code>req</code> object.</p>
-                    <p>Useful for examining the query string, for example by digging into <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams">searchParams</a>.</p>
+                    <p>If we need to know more about what the client is looking at in the address bar we can do so here. It is a <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL">URL</a> instance generated from the <code>req</code> object.</p>
+                    <p>Useful for examining the query string, for example by digging into <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams" target="_blank">searchParams</a>.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">createRoute</span>({
     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
     <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/hotels&#x27;</span>,
@@ -200,12 +200,12 @@
 });
 </code></pre>
                     <h3>methods</h3>
-                    <p>An array of methods available in our app at the current url.</p>
+                    <p>An array of methods available in our app at the current url (<code>GET</code>, <code>POST</code>, <code>OPTIONS</code>, etc.).</p>
                     <h3>context</h3>
                     <p>A place to store variables derived by actions, we might use these variables elsewhere in our code. Changes can be made here whenever we want and it may be populated with anything.</p>
-                    <p>Maybe authentication details, a user object, or any data that&#39;s used in other places.</p>
+                    <p>Maybe authentication details, a user object, or any data that&#39;s useful in other places.</p>
                     <h3>params</h3>
-                    <p>When defining a route we can specify parameters to extract by prefixing a colon <code>&#39;:&#39;</code> character in the url. If we specify a route such as <code>&#39;/users/:userId&#39;</code> we will have a <code>params</code> item called <code>&#39;userId&#39;</code>. Use a double asterisk <code>&#39;/**&#39;</code> to accept anything for the remainder of the url, we will have a <code>params</code> item called <code>&#39;wild&#39;</code>.</p>
+                    <p>When defining a route we can specify parameters to extract by prefixing a colon <code>&#39;:&#39;</code> character in the url. If we specify a route such as <code>&#39;/users/:userId&#39;</code> we will have a <code>params</code> item called <code>&#39;userId&#39;</code>. Use a double asterisk <code>&#39;/**&#39;</code> to accept anything for the remainder of the url, this will cause us to have a <code>params</code> item called <code>&#39;wild&#39;</code>.</p>
                     <p>Param values are always a string.</p>
                     <h3>cookies</h3>
                     <p>Includes helpers for <code>get()</code>, <code>set()</code>, and <code>remove()</code>. The <code>set()</code> method takes an optional third parameter with <code>expires</code>, <code>maxAge</code>, <code>domain</code>, <code>path</code>, <code>secure</code>, <code>httpOnly</code>, <code>partitioned</code>, and <code>sameSite</code>.</p>
@@ -221,7 +221,7 @@
                     <h3>logger</h3>
                     <p>The logger being used by the application.</p>
                     <h3>getBody</h3>
-                    <p>This method can be used in many ways so the next section will look at it in detail.</p>
+                    <p>This method can be used in many ways so we will look at it in detail the next section.</p>
                 </div>
             </main>
         </div>

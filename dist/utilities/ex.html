@@ -181,24 +181,30 @@
                 <div class="prose prose-invert max-w-none pb-8">
                     <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Ex</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 </code></pre>
-                    <p>An unhandled exception from our application results in a 500 Internal Server Error. If we would like an error with a different status code, there is a helper tool for that.</p>
-                    <pre><code class="hljs language-javascript"><span class="hljs-title function_">createRoute</span>({
-    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
-    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/throw-error&#x27;</span>,
-    <span class="hljs-attr">actions</span>: [<span class="hljs-function">() =&gt;</span> {
-        <span class="hljs-keyword">throw</span> <span class="hljs-title class_">Ex</span>.<span class="hljs-title class_">NotFound</span>();
-        <span class="hljs-keyword">throw</span> <span class="hljs-title class_">Ex</span>.<span class="hljs-title class_">NotFound</span>(<span class="hljs-string">&#x27;Custom message&#x27;</span>, { <span class="hljs-attr">extra</span>: <span class="hljs-string">&#x27;info&#x27;</span> });
-        <span class="hljs-comment">// same as</span>
-        <span class="hljs-keyword">throw</span> <span class="hljs-title class_">Ex</span>.<span class="hljs-title class_">StatusCode</span>(<span class="hljs-number">404</span>);
-        <span class="hljs-keyword">throw</span> <span class="hljs-title class_">Ex</span>.<span class="hljs-title class_">StatusCode</span>(<span class="hljs-number">404</span>, <span class="hljs-string">&#x27;Custom message&#x27;</span>, { <span class="hljs-attr">extra</span>: <span class="hljs-string">&#x27;info&#x27;</span> });
-    }]
+                    <p>An unhandled exception from our application results in a <code>500 Internal Server Error</code>. If we would like an error with a different status code, there is a helper tool for that.</p>
+                    <pre><code class="hljs language-javascript"><span class="hljs-title function_">createAction</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">throw</span> <span class="hljs-title class_">Ex</span>.<span class="hljs-title class_">NotFound</span>();
 });
 </code></pre>
-                    <p>This makes it easy to utilize any status code 400 and above. These methods create errors with correct stack traces we can throw directly without the use of new.</p>
+                    <p>The following examples are roughly equivalent:</p>
+                    <pre><code class="hljs language-javascript"><span class="hljs-title function_">createAction</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">throw</span> <span class="hljs-title class_">Ex</span>.<span class="hljs-title class_">NotFound</span>(<span class="hljs-string">&#x27;Custom message&#x27;</span>, { <span class="hljs-attr">extra</span>: <span class="hljs-string">&#x27;info&#x27;</span> });
+});
+</code></pre>
+                    <pre><code class="hljs language-javascript"><span class="hljs-title function_">createAction</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">throw</span> <span class="hljs-title class_">Ex</span>.<span class="hljs-title class_">StatusCode</span>(<span class="hljs-number">404</span>);
+});
+</code></pre>
+                    <pre><code class="hljs language-javascript"><span class="hljs-title function_">createAction</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">throw</span> <span class="hljs-title class_">Ex</span>.<span class="hljs-title class_">StatusCode</span>(<span class="hljs-number">404</span>, <span class="hljs-string">&#x27;Custom message&#x27;</span>, { <span class="hljs-attr">extra</span>: <span class="hljs-string">&#x27;info&#x27;</span> });
+});
+</code></pre>
+                    <p>This makes it easy to utilize any status code <code>400</code> and above. These methods create errors with correct stack traces we can throw directly without the use of new.</p>
+                    <p>Any extra information added to the end of the parameter list will be available by accessing <code>ex.info</code>. With the default error handler this information is stripped off along with the stack trace in <code>production</code> mode.</p>
                     <table>
                         <thead>
                             <tr>
-                                <th>Error Name</th>
+                                <th>Name</th>
                                 <th>Status Code</th>
                                 <th>Message</th>
                             </tr>
@@ -207,207 +213,207 @@
                             <tr>
                                 <td>BadRequest</td>
                                 <td>400</td>
-                                <td>Bad Request</td>
+                                <td><code>&#39;Bad Request&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>Unauthorized</td>
                                 <td>401</td>
-                                <td>Unauthorized</td>
+                                <td><code>&#39;Unauthorized&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>PaymentRequired</td>
                                 <td>402</td>
-                                <td>Payment Required</td>
+                                <td><code>&#39;Payment Required&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>Forbidden</td>
                                 <td>403</td>
-                                <td>Forbidden</td>
+                                <td><code>&#39;Forbidden&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>NotFound</td>
                                 <td>404</td>
-                                <td>Not Found</td>
+                                <td><code>&#39;Not Found&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>MethodNotAllowed</td>
                                 <td>405</td>
-                                <td>Method Not Allowed</td>
+                                <td><code>&#39;Method Not Allowed&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>NotAcceptable</td>
                                 <td>406</td>
-                                <td>Not Acceptable</td>
+                                <td><code>&#39;Not Acceptable&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>ProxyAuthenticationRequired</td>
                                 <td>407</td>
-                                <td>Proxy Authentication Required</td>
+                                <td><code>&#39;Proxy Authentication Required&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>RequestTimeout</td>
                                 <td>408</td>
-                                <td>Request Timeout</td>
+                                <td><code>&#39;Request Timeout&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>Conflict</td>
                                 <td>409</td>
-                                <td>Conflict</td>
+                                <td><code>&#39;Conflict&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>Gone</td>
                                 <td>410</td>
-                                <td>Gone</td>
+                                <td><code>&#39;Gone&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>LengthRequired</td>
                                 <td>411</td>
-                                <td>Length Required</td>
+                                <td><code>&#39;Length Required&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>PreconditionFailed</td>
                                 <td>412</td>
-                                <td>Precondition Failed</td>
+                                <td><code>&#39;Precondition Failed&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>PayloadTooLarge</td>
                                 <td>413</td>
-                                <td>Payload Too Large</td>
+                                <td><code>&#39;Payload Too Large&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>URITooLong</td>
                                 <td>414</td>
-                                <td>URI Too Long</td>
+                                <td><code>&#39;URI Too Long&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>UnsupportedMediaType</td>
                                 <td>415</td>
-                                <td>Unsupported Media Type</td>
+                                <td><code>&#39;Unsupported Media Type&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>RangeNotSatisfiable</td>
                                 <td>416</td>
-                                <td>Range Not Satisfiable</td>
+                                <td><code>&#39;Range Not Satisfiable&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>ExpectationFailed</td>
                                 <td>417</td>
-                                <td>Expectation Failed</td>
+                                <td><code>&#39;Expectation Failed&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>ImATeapot</td>
                                 <td>418</td>
-                                <td>I&#39;m a teapot</td>
+                                <td><code>&#39;I&#39;m a teapot&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>MisdirectedRequest</td>
                                 <td>421</td>
-                                <td>Misdirected Request</td>
+                                <td><code>&#39;Misdirected Request&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>UnprocessableEntity</td>
                                 <td>422</td>
-                                <td>Unprocessable Entity</td>
+                                <td><code>&#39;Unprocessable Entity&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>Locked</td>
                                 <td>423</td>
-                                <td>Locked</td>
+                                <td><code>&#39;Locked&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>FailedDependency</td>
                                 <td>424</td>
-                                <td>Failed Dependency</td>
+                                <td><code>&#39;Failed Dependency&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>TooEarly</td>
                                 <td>425</td>
-                                <td>Too Early</td>
+                                <td><code>&#39;Too Early&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>UpgradeRequired</td>
                                 <td>426</td>
-                                <td>Upgrade Required</td>
+                                <td><code>&#39;Upgrade Required&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>PreconditionRequired</td>
                                 <td>428</td>
-                                <td>Precondition Required</td>
+                                <td><code>&#39;Precondition Required&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>TooManyRequests</td>
                                 <td>429</td>
-                                <td>Too Many Requests</td>
+                                <td><code>&#39;Too Many Requests&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>RequestHeaderFieldsTooLarge</td>
                                 <td>431</td>
-                                <td>Request Header Fields Too Large</td>
+                                <td><code>&#39;Request Header Fields Too Large&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>UnavailableForLegalReasons</td>
                                 <td>451</td>
-                                <td>Unavailable For Legal Reasons</td>
+                                <td><code>&#39;Unavailable For Legal Reasons&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>InternalServerError</td>
                                 <td>500</td>
-                                <td>Internal Server Error</td>
+                                <td><code>&#39;Internal Server Error&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>NotImplemented</td>
                                 <td>501</td>
-                                <td>Not Implemented</td>
+                                <td><code>&#39;Not Implemented&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>BadGateway</td>
                                 <td>502</td>
-                                <td>Bad Gateway</td>
+                                <td><code>&#39;Bad Gateway&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>ServiceUnavailable</td>
                                 <td>503</td>
-                                <td>Service Unavailable</td>
+                                <td><code>&#39;Service Unavailable&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>GatewayTimeout</td>
                                 <td>504</td>
-                                <td>Gateway Timeout</td>
+                                <td><code>&#39;Gateway Timeout&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>HTTPVersionNotSupported</td>
                                 <td>505</td>
-                                <td>HTTP Version Not Supported</td>
+                                <td><code>&#39;HTTP Version Not Supported&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>VariantAlsoNegotiates</td>
                                 <td>506</td>
-                                <td>Variant Also Negotiates</td>
+                                <td><code>&#39;Variant Also Negotiates&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>InsufficientStorage</td>
                                 <td>507</td>
-                                <td>Insufficient Storage</td>
+                                <td><code>&#39;Insufficient Storage&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>LoopDetected</td>
                                 <td>508</td>
-                                <td>Loop Detected</td>
+                                <td><code>&#39;Loop Detected&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>BandwidthLimitExceeded</td>
                                 <td>509</td>
-                                <td>Bandwidth Limit Exceeded</td>
+                                <td><code>&#39;Bandwidth Limit Exceeded&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>NotExtended</td>
                                 <td>510</td>
-                                <td>Not Extended</td>
+                                <td><code>&#39;Not Extended&#39;</code></td>
                             </tr>
                             <tr>
                                 <td>NetworkAuthenticationRequired</td>
                                 <td>511</td>
-                                <td>Network Authentication Required</td>
+                                <td><code>&#39;Network Authentication Required&#39;</code></td>
                             </tr>
                         </tbody>
                     </table>

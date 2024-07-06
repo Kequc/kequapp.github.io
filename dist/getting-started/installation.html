@@ -182,6 +182,15 @@
                     <p>To install Kequapp, run the following command:</p>
                     <pre><code>npm i kequapp
 </code></pre>
+                    <p>It is good practice to make both a <code>server.js</code> file and <code>app.js</code> file, to keep concerns separated. Use <code>server.js</code> as your entry point to the application and access <code>app.js</code> for testing purposes.</p>
+                    <h3>package.json</h3>
+                    <pre><code>{
+    &quot;scripts&quot;: {
+        &quot;start&quot;: &quot;node ./server.js&quot;
+    }
+}
+</code></pre>
+                    <p>If you like, <a href="https://www.npmjs.com/package/nodemon" target="_blank">nodemon</a> can be used instead to restart the server automatically whenever code changes are made.</p>
                 </div>
             </main>
         </div>

@@ -4,36 +4,37 @@
 import { staticDirectory } from 'kequapp';
 ```
 
-Pairs a wild parameter with a static directory relative to the root of our project.
+| key | description | default |
+| ---- | ---- | ---- |
+| **location \*** | *Directory* | |
+| **contentTypes** | *Content types* | `{}` |
+| **indexes** | *File names* | `[]` |
+
+The `staticDirectory` function creates an action intended to pair a `'wild'` parameter with a static directory relative to the root of our project. Therefore the `url` should end with `'/**'`.
+
+An array of `indexes`, for example `['index.html']` may be provided to resolve when the request points at a directory.
+
+A `'Content-Type'` header is guessed based on every asset's file extension. If there are assets in the directory with unusual file extensions, then additional `contentTypes` may be provided.
 
 ```javascript
 const staticAssets = staticDirectory({
     location: '/my-assets-dir',
     contentTypes: {
-        '.3gp': 'audio/3gpp'
-    }
+        '.3gp': 'audio/3gpp',
+    },
+    indexes: ['index.html'],
 });
 
-createApp({
-    routes: [
-        {
-            method: 'GET',
-            url: '/assets/**',
-            actions: [staticAssets]
-        }
-    ]
+createRoute({
+    method: 'GET',
+    url: '/assets/**',
+    actions: [staticAssets],
 });
 ```
 
-The url should end with '/**' capturing all possible paths.
-
-A 'Content-Type' header is guessed based on every asset's file extension. If there are assets in the directory with unusual file extensions, then additional contentTypes may be provided. Exclusions can be provided if we want to ignore certain requests, or headers for assets can be set by using an action.
-
-An array of index files, for example ['index.html'], may be provided to resolve when the location is a directory.
+Additional control can be obtained by using an action.
 
 ```javascript
-// staticDirectory
-
 const prepare = createAction(({ res, params }) => {
     res.setHeader('Cache-Control', 'max-age=604800');
 
@@ -42,13 +43,9 @@ const prepare = createAction(({ res, params }) => {
     }
 });
 
-createApp({
-    routes: [
-        {
-            method: 'GET',
-            url: '/assets/**',
-            actions: [prepare, staticAssets]
-        }
-    ]
+createRoute({
+    method: 'GET',
+    url: '/assets/**',
+    actions: [prepare, staticAssets],
 });
 ```

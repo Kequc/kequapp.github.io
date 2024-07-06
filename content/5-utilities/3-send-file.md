@@ -4,24 +4,16 @@
 import { sendFile } from 'kequapp';
 ```
 
-Sends a file and finalizes the response.
-
-This is asynchronous and must be awaited; otherwise, the application might get confused as it continues processing the request unexpectedly.
+The `sendFile` function delivers a file to the client and finalizes the response. This is asynchronous and must be awaited. Otherwise the application might get confused as it continued processing the request unexpectedly.
 
 ```javascript
-const serveDb = createAction(async ({ req, res }) => {
-    await sendFile(req, res, '/db/my-db.json');
-});
-
-createApp({
-    routes: [
-        {
-            method: 'GET',
-            url: '/db.json',
-            actions: [serveDb],
-        }
-    ]
+createRoute({
+    method: 'GET',
+    url: '/db.json',
+    actions: [async ({ req, res }) => {
+        await sendFile(req, res, '/db/my-db.json');
+    }],
 });
 ```
 
-A fourth parameter may be provided defining a 'Content-Type'; this header is otherwise guessed from the file extension.
+A fourth parameter may be provided defining a `'Content-Type'` this header is otherwise guessed from the file extension.

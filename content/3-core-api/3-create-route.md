@@ -12,7 +12,9 @@ import { createRoute } from 'kequapp';
 | **logger** | *Logger* | `console` |
 | **autoHead** | *HEAD request* | `true` |
 
-A route must specify a method (`'GET'`, `'POST'`, etc.) and a url. The url is a pathname that the route should respond to and must always start with `'/'`.
+Routes define the endpoints of your application.
+
+The `createRoute` function must specify a method (`GET`, `POST`, etc.) and a url. The url is a pathname that the route should respond to and must always start with `'/'`. Actions are a list of functions that should be executed in order when the endpoint is accessed.
 
 ### Example
 

@@ -15,6 +15,8 @@ import { createBranch } from 'kequapp';
 | **errorHandlers** | *Error handlers* | `[]` |
 | **renderers** | *Renderers* | `[]` |
 
+The `createBranch` function allows you to organize your routes into logical sections, or branches. Each branch can have its own set of routes, actions, error handlers, and renderers.
+
 A branch of the application will distribute the given options, actions, error handlers, and renderers through a section of branches and routes.
 
 ### Example
@@ -24,7 +26,7 @@ createBranch({
     branches: [
         {
             url: '/api/users',
-            actions: [json],
+            actions: [setJson],
             routes: [
                 {
                     method: 'GET',

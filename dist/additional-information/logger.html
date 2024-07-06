@@ -179,8 +179,10 @@
                 <!-- Main content -->
                 <h1 class="text-white text-3xl mb-8"># Logger</h1>
                 <div class="prose prose-invert max-w-none pb-8">
-                    <p>One of the options provided to <code>createBranch()</code> is a <code>logger</code> parameter. The default logger for the application is a simple object with methods for <code>error</code>, <code>warn</code>, <code>info</code>, <code>http</code>, <code>verbose</code>, <code>debug</code>, <code>silly</code>, and <code>log</code>. Each mapping roughly to console.</p>
-                    <p>Overriding this logger requires an object with some or all of the same methods.</p>
+                    <p>One of the options provided to <code>createBranch</code> is a <code>logger</code> parameter.</p>
+                    <p>The default logger for the application is a simple object with methods for <code>error</code>, <code>warn</code>, <code>info</code>, <code>http</code>, <code>verbose</code>, <code>debug</code>, <code>silly</code>, and <code>log</code> which each map roughly to console. Overriding this logger requires an object with some or all of the same methods.</p>
+                    <p>The logger is available in all actions using the <code>logger</code> property.</p>
+                    <p>This is where you may elect to make some logging silent for example the <code>http</code> logger is used whenever a request is resolved.</p>
                 </div>
             </main>
         </div>
