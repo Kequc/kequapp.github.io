@@ -6,7 +6,7 @@ import { inject } from 'kequapp';
 
 We may unit test our application without starting a server by using the `inject` tool. The first parameter is our app, then options used to populate the request.
 
-The returned `req` value is a simulation of Node's built-in <a href="https://nodejs.org/api/http.html#class-httpclientrequest" target="_blank">ClientRequest</a> object and is a Transform stream. The returned `res` value is a simulation of Node's built-in <a href="https://nodejs.org/api/http.html#class-httpserverresponse" target="_blank">ServerResponse</a> object and is also a Transform stream. The returned `getResponse` tool waits for our application to finish processing, and parses the response. It is very similar to `getBody` as described earlier. We could inspect what our application is doing using the `req` and `res` objects in real-time instead if that's what we need.
+The returned `req` value is a simulation of Node's built-in <a href="https://nodejs.org/api/http.html#class-httpclientrequest" target="_blank">ClientRequest</a> object and is a Transform stream. The returned `res` value is a simulation of Node's built-in <a href="https://nodejs.org/api/http.html#class-httpserverresponse" target="_blank">ServerResponse</a> object and is also a Transform stream. The returned `getResponse` tool waits for our application to finish processing, and parses the response. It is very similar to `getBody` as described earlier. We could inspect what our application is doing using the `req` and `res` objects in real-time instead if that's what you need.
 
 ```javascript
 it('reads the authorization header', async () => {
@@ -24,7 +24,7 @@ it('reads the authorization header', async () => {
 });
 ```
 
-All requests are automatically finalized when using `inject` unless the `body` parameter is set to `null`. Doing this will allow us to write to the stream in cases where more precise testing is necessary.
+All requests are automatically finalized when using `inject` unless the `body` parameter is set to `null`. Doing this will allow you to write to the stream in cases where more precise testing is necessary.
 
 The following two examples are the same.
 

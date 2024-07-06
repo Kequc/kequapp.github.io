@@ -28,4 +28,4 @@ We want to make your experience with Kequapp as smooth as possible. Here’s a q
 
 We believe Kequapp will provide you with the tools and flexibility you need to build great web applications. Dive into the documentation to explore more about each feature and how to leverage them in your projects.
 
-If you have any questions, need further assistance, or want to contribute, feel free to reach out to us on our <a href="https://github.com/Kequc/kequapp" target="_blank">GitHub page</a>.
+If you have any questions, need further assistance, or want to contribute, feel free to reach out on the <a href="https://github.com/Kequc/kequapp" target="_blank">GitHub page</a>.

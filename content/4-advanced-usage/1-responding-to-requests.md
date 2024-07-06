@@ -6,7 +6,7 @@ Any action may terminate a request one of three ways:
 2. **Return a value** - A renderer is invoked.
 3. **Finalize the response**
 
-Finalizing a response is for cases where we need the most control. It allows us to terminate the response any way we need without invoking a renderer.
+Finalizing a response is for cases where you need the most control. It allows you to terminate the response any way you need without invoking a renderer.
 
 ```javascript
 const loggedIn = createAction(({ req, res }) => {
