@@ -10,7 +10,7 @@ import { staticDirectory } from 'kequapp';
 | **contentTypes** | *Content types* | `{}` |
 | **indexes** | *File names* | `[]` |
 
-The `staticDirectory` function creates an action intended to pair a `'wild'` parameter with a static directory relative to the root of our project. Therefore the `url` should end with `'/**'`.
+The `staticDirectory` function creates an action intended to pair a `'wild'` parameter with a static directory relative to the root of your project. Therefore the `url` should end with `'/**'`.
 
 An array of `indexes`, for example `['index.html']` may be provided to resolve when the request points at a directory.
 
