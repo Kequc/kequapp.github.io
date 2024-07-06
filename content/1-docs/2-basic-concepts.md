@@ -30,7 +30,7 @@ It serves to break up your code and make it reusable. Each action comes with man
 
 ### CORS
 
-Kequapp is the only JavaScript web framework we are aware of that correctly responds to `OPTIONS` requests. What's more, it still gives you additional control to suit your needs. This is an example of where the structure of this framework shines.
+Kequapp is the only JavaScript web framework I am aware of that correctly responds to `OPTIONS` requests. What's more, it still gives you additional control to suit your needs. This is an example of where the structure of this framework shines.
 
 Every request your application receives knows what matching routes exist at that url. This is what `OPTIONS` responses are supposed to communicate to the client.
 
@@ -46,4 +46,4 @@ If your application makes use of the body of requests in a unique way this frame
 
 Understanding these core concepts will help you build robust and scalable applications with Kequapp. As you explore the documentation, you'll find more details and examples to guide you through each feature.
 
-Thank you for trying our framework we hope it's as enjoyable for you as it is for myself!
+Thank you for trying our framework I hope it's as enjoyable for you as it is for myself!

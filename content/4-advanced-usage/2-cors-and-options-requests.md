@@ -1,8 +1,8 @@
 # CORS and OPTIONS Requests
 
-CORS behavior is managed by headers as shaped by actions. The framework will automatically add default headers we can use for basic support.
+CORS behavior is managed by headers as shaped by actions. The framework will automatically add default headers you can use for basic support.
 
-To enable CORS, our application needs to respond to preflight requests, therefore we define an `OPTIONS` route. By default, any url that has a matching `OPTIONS` route is decorated with `'Access-Control-Allow-Origin'` with a value of `'*'`. This alone is enough to handle the majority of CORS-related cases and functionality.
+To enable CORS, our application needs to respond to preflight requests, therefore you define an `OPTIONS` route. By default, any url that has a matching `OPTIONS` route is decorated with `'Access-Control-Allow-Origin'` with a value of `'*'`. This alone is enough to handle the majority of CORS-related cases and functionality.
 
 ```javascript
 createApp({
@@ -17,7 +17,7 @@ createApp({
 
 The framework automatically attaches four additional headers to `OPTIONS` responses. `'Valid'` and `'Access-Control-Allow-Methods'` will correctly identify all methods available at the requested url. `'Access-Control-Allow-Headers'` will return headers that the client specified. `'Content-Length'` will be `0`.
 
-In addition, the default response code for `OPTIONS` requests is `204`. To change any of this behavior or add more headers to `OPTIONS` responses, we use an action.
+In addition, the default response code for `OPTIONS` requests is `204`. To change any of this behavior or add more headers to `OPTIONS` responses, you use an action.
 
 ```javascript
 createApp({
@@ -34,9 +34,9 @@ createApp({
 });
 ```
 
-As `OPTIONS` responses do not need to include a body, we can safely leave the route like this without rendering.
+As `OPTIONS` responses do not need to include a body, you can safely leave the route like this without rendering.
 
-The simplest place to override `'Access-Control-Allow-Origin'` is at the base of the application but we may adjust this as needed. The `createApp` method accepts actions and is a convenient place to set global headers.
+The simplest place to override `'Access-Control-Allow-Origin'` is at the base of the application but you may adjust this as needed. The `createApp` method accepts actions and is a convenient place to set global headers.
 
 ```javascript
 const strictCors = createAction(({ res, methods }) => {

@@ -54,18 +54,10 @@
                         <ul>
                             {{#pages}}
                                 {{#active}}
-                                    <li>
-                                        <a href="{{{url}}}" class="text-green-400 font-medium w-full block py-1">
-                                            {{pageTitle}}
-                                        </a>
-                                    </li>
+                                    <li><a href="{{{url}}}" class="text-green-400 font-medium w-full block py-1">{{pageTitle}}</a></li>
                                 {{/active}}
                                 {{^active}}
-                                    <li>
-                                        <a href="{{{url}}}" class="text-gray-300 hover:text-green-400 w-full block py-1">
-                                            {{pageTitle}}
-                                        </a>
-                                    </li>
+                                    <li><a href="{{{url}}}" class="text-gray-300 hover:text-green-400 w-full block py-1">{{pageTitle}}</a></li>
                                 {{/active}}
                             {{/pages}}
                         </ul>

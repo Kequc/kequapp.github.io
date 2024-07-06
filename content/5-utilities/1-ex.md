@@ -4,7 +4,7 @@
 import { Ex } from 'kequapp';
 ```
 
-An unhandled exception from our application results in a `500 Internal Server Error`. If we would like an error with a different status code, there is a helper tool for that.
+An unhandled exception from our application results in a `500 Internal Server Error`. If you would like an error with a different status code, there is a helper tool for that.
 
 ```javascript
 createAction(() => {
@@ -32,7 +32,7 @@ createAction(() => {
 });
 ```
 
-This makes it easy to utilize any status code `400` and above. These methods create errors with correct stack traces we can throw directly without the use of new.
+This makes it easy to utilize any status code `400` and above. These methods create errors with correct stack traces that can be thrown directly without the use of new.
 
 Any extra information added to the end of the parameter list will be available by accessing `ex.info`. With the default error handler this information is stripped off along with the stack trace in `production` mode.
 

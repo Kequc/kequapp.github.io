@@ -12,7 +12,7 @@ Node's <a href="https://nodejs.org/api/http.html#class-httpserverresponse" targe
 
 ### url
 
-If we need to know more about what the client is looking at in the address bar we can do so here. It is a [URL](https://developer.mozilla.org/en-US/docs/Web/API/URL) instance generated from the `req` object.
+If you need to know more about what the client is looking at in the address bar you can do so here. It is a [URL](https://developer.mozilla.org/en-US/docs/Web/API/URL) instance generated from the `req` object.
 
 Useful for examining the query string, for example by digging into <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams" target="_blank">searchParams</a>.
 
@@ -36,13 +36,13 @@ An array of methods available in our app at the current url (`GET`, `POST`, `OPT
 
 ### context
 
-A place to store variables derived by actions, we might use these variables elsewhere in our code. Changes can be made here whenever we want and it may be populated with anything.
+A place to store variables derived by actions, you might use these variables elsewhere in our code. Changes can be made here whenever you want and it may be populated with anything.
 
 Maybe authentication details, a user object, or any data that's useful in other places.
 
 ### params
 
-When defining a route we can specify parameters to extract by prefixing a colon `':'` character in the url. If we specify a route such as `'/users/:userId'` we will have a `params` item called `'userId'`. Use a double asterisk `'/**'` to accept anything for the remainder of the url, this will cause us to have a `params` item called `'wild'`.
+When defining a route you may specify parameters to extract by prefixing a colon `':'` character in the url. If you specifid a route such as `'/users/:userId'` it will have a `params` item called `'userId'`. Use a double asterisk `'/**'` to accept anything for the remainder of the url, it will have a `params` item called `'wild'`.
 
 Param values are always a string.
 

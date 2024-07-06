@@ -2,7 +2,7 @@
 
 Node delivers the body of a request in chunks.
 
-It is not necessary to wait for the request to finish before we begin processing it. In most cases, we just want the data and therefore a helper method `getBody` is provided which we may use to await body parameters from the completed request.
+It is not necessary to wait for the request to finish before we begin processing it. In most cases, you just want the data and therefore a helper method `getBody` is provided which you may use to await body parameters from the completed request.
 
 ```javascript
 createRoute({
@@ -99,7 +99,7 @@ createRoute({
 
 ### skipNormalize
 
-By default, the data received is pushed through some body normalization. This is so that the body we receive is in a format we expect and is therefore easier to work with. Normalization is directed by `arrays`, `required`, `numbers`, `booleans`, and `validate`.
+By default, the data received is pushed through some body normalization. This is so that the body you receive is in a format you'd expect and is therefore easier to work with. Normalization is directed by `arrays`, `required`, `numbers`, `booleans`, and `validate`.
 
 Disable body normalization with either `raw` or `skipNormalize`.
 
@@ -129,7 +129,7 @@ createRoute({
 
 ### required
 
-The provided list of fields are not `null` or `undefined`. It's a quick way to throw a `422 Unprocessable Entity` error. These fields might still be empty, but at least something was sent and we know we can operate on them. When a `required` field is also an `arrays` field the array is sure to have at least one value.
+The provided list of fields are not `null` or `undefined`. It's a quick way to throw a `422 Unprocessable Entity` error. These fields might still be empty, but at least something was sent and you know you can operate on them. When a `required` field is also an `arrays` field the array is sure to have at least one value.
 
 ### numbers
 
