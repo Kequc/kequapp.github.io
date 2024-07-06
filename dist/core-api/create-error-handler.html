@@ -197,12 +197,14 @@
                             </tr>
                             <tr>
                                 <td><strong>action *</strong></td>
-                                <td><em>Handler</em></td>
+                                <td><em>Action</em></td>
                                 <td></td>
                             </tr>
                         </tbody>
                     </table>
-                    <p>An appropriate error handler is invoked whenever an action throws an exception.</p>
+                    <p>Error handlers are invoked when an action throws an exception. They turn errors into useful information that is sent to a renderer in place of the expected response.</p>
+                    <p>The first parameter of an error handler is the error that has been thrown, otherwise it is the same as any other action. It can return a value to invoke a renderer or finalize the response. You may make changes to the headers or anything that you need.</p>
+                    <p>The <code>createErrorHandler</code> function must specify a content type (<code>&#39;application/json&#39;</code>, <code>&#39;text/html&#39;</code>, etc.) and an action to manipulate the information into a response.</p>
                     <h3>Example</h3>
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">createErrorHandler</span>({
     <span class="hljs-attr">contentType</span>: <span class="hljs-string">&#x27;text/*&#x27;</span>,
@@ -212,6 +214,8 @@
 });
 </code></pre>
                     <p>Errors thrown within an error handler or the renderer it invokes will cause a fatal exception and an empty <code>body</code> will be delivered to the client.</p>
+                    <p>For a good example of how to write an error handler see this repo&#39;s <a href="https://github.com/Kequc/kequapp/tree/main/src/built-in" target="_blank">/src/built-in</a> directory.</p>
+                    <p>Kequapp will turn any error into json by default, and return a json formatted response. However this behavior can be overriden by writing error handlers of your own that support a more specific content type.</p>
                 </div>
             </main>
         </div>

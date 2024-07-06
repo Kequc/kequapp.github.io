@@ -180,7 +180,7 @@
                 <h1 class="text-white text-3xl mb-8"># CORS and OPTIONS Requests</h1>
                 <div class="prose prose-invert max-w-none pb-8">
                     <p>CORS behavior is managed by headers as shaped by actions. The framework will automatically add default headers we can use for basic support.</p>
-                    <p>To enable CORS, our application needs to respond to preflight requests, therefore we define an OPTIONS route. By default, any url that has a matching OPTIONS route is decorated with &#39;Access-Control-Allow-Origin&#39; with a value of &#39;*&#39;. This alone is enough to handle the majority of CORS-related cases and functionality.</p>
+                    <p>To enable CORS, our application needs to respond to preflight requests, therefore we define an <code>OPTIONS</code> route. By default, any url that has a matching <code>OPTIONS</code> route is decorated with <code>&#39;Access-Control-Allow-Origin&#39;</code> with a value of <code>&#39;*&#39;</code>. This alone is enough to handle the majority of CORS-related cases and functionality.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">createApp</span>({
     <span class="hljs-attr">routes</span>: [
         {
@@ -190,8 +190,8 @@
     ]
 });
 </code></pre>
-                    <p>The framework automatically attaches four additional headers to OPTIONS responses. &#39;Valid&#39; and &#39;Access-Control-Allow-Methods&#39; will correctly identify all methods available at the requested url. &#39;Access-Control-Allow-Headers&#39; will return headers that the client specified. &#39;Content-Length&#39; will be 0.</p>
-                    <p>In addition, the default response code for OPTIONS requests is 204. To change any of this behavior or add more headers to OPTIONS responses, we use an action.</p>
+                    <p>The framework automatically attaches four additional headers to <code>OPTIONS</code> responses. <code>&#39;Valid&#39;</code> and <code>&#39;Access-Control-Allow-Methods&#39;</code> will correctly identify all methods available at the requested url. <code>&#39;Access-Control-Allow-Headers&#39;</code> will return headers that the client specified. <code>&#39;Content-Length&#39;</code> will be <code>0</code>.</p>
+                    <p>In addition, the default response code for <code>OPTIONS</code> requests is <code>204</code>. To change any of this behavior or add more headers to <code>OPTIONS</code> responses, we use an action.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">createApp</span>({
     <span class="hljs-attr">routes</span>: [
         {
@@ -205,8 +205,8 @@
     ]
 });
 </code></pre>
-                    <p>As OPTIONS responses do not need to include a body, we can safely leave the route like this without rendering.</p>
-                    <p>The simplest place to override &#39;Access-Control-Allow-Origin&#39; is at the base of the application but we may adjust this as needed. The createApp() method accepts actions and is a convenient place to set global headers.</p>
+                    <p>As <code>OPTIONS</code> responses do not need to include a body, we can safely leave the route like this without rendering.</p>
+                    <p>The simplest place to override <code>&#39;Access-Control-Allow-Origin&#39;</code> is at the base of the application but we may adjust this as needed. The <code>createApp</code> method accepts actions and is a convenient place to set global headers.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> strictCors = <span class="hljs-title function_">createAction</span>(<span class="hljs-function">(<span class="hljs-params">{ res, methods }</span>) =&gt;</span> {
     <span class="hljs-keyword">if</span> (methods.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&#x27;OPTIONS&#x27;</span>)) {
         res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Access-Control-Allow-Origin&#x27;</span>, <span class="hljs-string">&#x27;https://foo.com&#x27;</span>);
@@ -217,8 +217,8 @@
     <span class="hljs-attr">actions</span>: [strictCors]
 });
 </code></pre>
-                    <p>This would cause all responses to include &#39;Access-Control-Allow-Origin&#39; but only if there is an OPTIONS route; one should be included for the mechanism to work correctly.</p>
-                    <p>Please see the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">MDN documentation on CORS</a> for more information about headers that the client expects to see.</p>
+                    <p>This would cause all responses to include <code>&#39;Access-Control-Allow-Origin&#39;</code> but only if there is an <code>OPTIONS</code> route; one should be included for the mechanism to work correctly.</p>
+                    <p>Please see the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" target="_blank">MDN documentation on CORS</a> for more information about headers that the client expects to see.</p>
                 </div>
             </main>
         </div>

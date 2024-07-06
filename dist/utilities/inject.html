@@ -181,14 +181,14 @@
                 <div class="prose prose-invert max-w-none pb-8">
                     <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { inject } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 </code></pre>
-                    <p>We may unit test our application without starting a server by using the inject() tool. The first parameter is our app, then options used to populate the request.</p>
-                    <p>The returned req value is a simulation of Node&#39;s built-in ClientRequest object and is a Transform stream. The returned res value is a simulation of Node&#39;s built-in ServerResponse object and is also a Transform stream. The returned getResponse() tool waits for our application to finish, and then parses the response. It is very similar to getBody() as described earlier. We could inspect what our application is doing using the req and res objects in real-time instead if that&#39;s what we want.</p>
+                    <p>We may unit test our application without starting a server by using the <code>inject</code> tool. The first parameter is our app, then options used to populate the request.</p>
+                    <p>The returned <code>req</code> value is a simulation of Node&#39;s built-in <a href="https://nodejs.org/api/http.html#class-httpclientrequest" target="_blank">ClientRequest</a> object and is a Transform stream. The returned <code>res</code> value is a simulation of Node&#39;s built-in <a href="https://nodejs.org/api/http.html#class-httpserverresponse" target="_blank">ServerResponse</a> object and is also a Transform stream. The returned <code>getResponse</code> tool waits for our application to finish processing, and parses the response. It is very similar to <code>getBody</code> as described earlier. We could inspect what our application is doing using the <code>req</code> and <code>res</code> objects in real-time instead if that&#39;s what we need.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">it</span>(<span class="hljs-string">&#x27;reads the authorization header&#x27;</span>, <span class="hljs-keyword">async</span> () =&gt; {
     <span class="hljs-keyword">const</span> { getResponse, res } = <span class="hljs-title function_">inject</span>(app, {
         <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/admin/dashboard&#x27;</span>,
         <span class="hljs-attr">headers</span>: {
-            <span class="hljs-title class_">Authorization</span>: <span class="hljs-string">&#x27;mike&#x27;</span>
-        }
+            <span class="hljs-title class_">Authorization</span>: <span class="hljs-string">&#x27;mike&#x27;</span>,
+        },
     });
 
     <span class="hljs-keyword">const</span> body = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getResponse</span>();
@@ -197,7 +197,7 @@
     assert.<span class="hljs-title function_">strictEqual</span>(body, <span class="hljs-string">&#x27;Hello admin mike!&#x27;</span>);
 });
 </code></pre>
-                    <p>All requests are automatically finalized when using inject() unless the body parameter is set to null. Doing this will allow us to write to the stream in cases where more precise testing is necessary.</p>
+                    <p>All requests are automatically finalized when using <code>inject</code> unless the <code>body</code> parameter is set to <code>null</code>. Doing this will allow us to write to the stream in cases where more precise testing is necessary.</p>
                     <p>The following two examples are the same.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> { getResponse } = <span class="hljs-title function_">inject</span>(app, {
     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
@@ -205,7 +205,7 @@
     <span class="hljs-attr">headers</span>: {
         <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>
     },
-    <span class="hljs-attr">body</span>: <span class="hljs-string">&#x27;{ &quot;name&quot;: &quot;April&quot; }&#x27;</span>
+    <span class="hljs-attr">body</span>: <span class="hljs-string">&#x27;{ &quot;name&quot;: &quot;April&quot; }&#x27;</span>,
 });
 
 <span class="hljs-keyword">const</span> body = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getResponse</span>();
@@ -214,9 +214,9 @@
     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
     <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users&#x27;</span>,
     <span class="hljs-attr">headers</span>: {
-        <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>
+        <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>,
     },
-    <span class="hljs-attr">body</span>: <span class="hljs-literal">null</span>
+    <span class="hljs-attr">body</span>: <span class="hljs-literal">null</span>,
 });
 
 <span class="hljs-comment">// finalize request</span>
@@ -224,7 +224,7 @@ req.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x2
 
 <span class="hljs-keyword">const</span> body = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getResponse</span>();
 </code></pre>
-                    <p>Note that getResponse() will not resolve until the request is finalized.</p>
+                    <p>Note that <code>getResponse</code> will not resolve until the request is finalized.</p>
                 </div>
             </main>
         </div>

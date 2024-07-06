@@ -179,8 +179,9 @@
                 <!-- Main content -->
                 <h1 class="text-white text-3xl mb-8"># HEAD Requests</h1>
                 <div class="prose prose-invert max-w-none pb-8">
-                    <p>By default, if a HEAD request has no matching route, our application will use a matching GET route in its place. Therefore it is important to keep in mind that HEAD requests follow the same flow as GET requests in our application.</p>
-                    <p>Occasionally, we may need to differentiate between the two as it is generally understood that a HEAD request does not modify data. In this case, looking at the value of req.method can be useful.</p>
+                    <p>By default, if a <code>HEAD</code> request has no matching route, our application will use a matching <code>GET</code> route in its place. Therefore it is important to keep in mind that <code>HEAD</code> requests follow the same flow as <code>GET</code> requests in our application.</p>
+                    <p>This behavior can be disabled by setting the parameter <code>autoHead</code> to <code>false</code> in any branch or route.</p>
+                    <p>Occasionally, we may need to differentiate between the two as it is generally understood that a <code>HEAD</code> request does not modify data. In this case, looking at the value of <code>req.method</code> can be useful.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">createRoute</span>({
     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
     <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/api/users&#x27;</span>,
@@ -191,7 +192,7 @@
     }]
 });
 </code></pre>
-                    <p>In most cases, HEAD and GET requests should run the same code, so we have nothing to worry about. Detection of HEAD requests is already handled by the renderers that are built-in to the framework. Largely what will happen is no body will be sent to the client, which is what a HEAD request wanted.</p>
+                    <p>In most cases, <code>HEAD</code> and <code>GET</code> requests should run the same code, so we have nothing to worry about. Detection of <code>HEAD</code> requests is already handled by the renderers that are built-in to the framework. Largely what will happen is no body will be sent to the client, which is what a <code>HEAD</code> request wanted.</p>
                 </div>
             </main>
         </div>

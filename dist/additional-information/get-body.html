@@ -180,7 +180,7 @@
                 <h1 class="text-white text-3xl mb-8"># getBody</h1>
                 <div class="prose prose-invert max-w-none pb-8">
                     <p>Node delivers the body of a request in chunks.</p>
-                    <p>It is not necessary to wait for the request to finish before we begin processing it. In most cases, we just want the data and therefore a helper method <code>getBody()</code> is provided which we may use to await body parameters from the completed request.</p>
+                    <p>It is not necessary to wait for the request to finish before we begin processing it. In most cases, we just want the data and therefore a helper method <code>getBody</code> is provided which we may use to await body parameters from the completed request.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">createRoute</span>({
     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
     <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users&#x27;</span>,
@@ -191,9 +191,9 @@
         <span class="hljs-comment">//     name: &#x27;April&#x27;</span>
         <span class="hljs-comment">// }</span>
 
-        <span class="hljs-keyword">return</span> \<span class="hljs-string">`User creation \${body.name}!\`;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`User creation <span class="hljs-subst">${body.name}</span>!`</span>;
     }]
-});</span>
+});
 </code></pre>
                     <p>It takes an options object which can be used to parse and normalize a client request into useful data in a large assortment of different ways.</p>
                     <h3>multipart</h3>
@@ -218,9 +218,9 @@
         <span class="hljs-comment">//     data: Buffer &lt;...&gt;</span>
         <span class="hljs-comment">// }]</span>
 
-        <span class="hljs-keyword">return</span> \<span class="hljs-string">`User creation \${body.name}!\`;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`User creation <span class="hljs-subst">${body.name}</span>!`</span>;
     }]
-});</span>
+});
 </code></pre>
                     <h3>raw</h3>
                     <p>Causes the body to be processed as minimally as possible and return a single buffer. This is especially useful when our application expects a content type other than <code>&#39;application/x-www-form-urlencoded&#39;</code>, <code>&#39;application/json&#39;</code>, or <code>&#39;multipart/form-data&#39;</code>.</p>
@@ -256,9 +256,9 @@
         <span class="hljs-comment">//     data: Buffer &lt;...&gt;</span>
         <span class="hljs-comment">// }]</span>
 
-        <span class="hljs-keyword">return</span> \<span class="hljs-string">`User creation \${parts[0].data.toString()}!\`;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`User creation <span class="hljs-subst">${parts[<span class="hljs-number">0</span>].data.toString()}</span>!`</span>;
     }]
-});</span>
+});
 </code></pre>
                     <h3>skipNormalize</h3>
                     <p>By default, the data received is pushed through some body normalization. This is so that the body we receive is in a format we expect and is therefore easier to work with. Normalization is directed by <code>arrays</code>, <code>required</code>, <code>numbers</code>, <code>booleans</code>, and <code>validate</code>.</p>

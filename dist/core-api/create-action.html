@@ -181,9 +181,11 @@
                 <div class="prose prose-invert max-w-none pb-8">
                     <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createAction } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 </code></pre>
-                    <p>A simple wrapper for an action the purpose of which is to provide types.</p>
+                    <p>Actions are functions that process requests. They can modify the request and response objects, perform authentication, validation, or any other processing needed. Actions can be asyncronous and are executed in sequence.</p>
+                    <p>These are fundamental to the structure of your application and you should create as many of them as you need. Any action that throws an error will invoke an error handler and one that returns a value will invoke a renderer.</p>
+                    <p>The <code>createAction</code> function acts as a wrapper for a function the purpose of which is to provide it types.</p>
                     <h3>Example</h3>
-                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> json = <span class="hljs-title function_">createAction</span>(<span class="hljs-function">(<span class="hljs-params">{ res }</span>) =&gt;</span> {
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> setJson = <span class="hljs-title function_">createAction</span>(<span class="hljs-function">(<span class="hljs-params">{ res }</span>) =&gt;</span> {
     res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;application/json&#x27;</span>);
 });
 
@@ -191,10 +193,11 @@
     <span class="hljs-keyword">if</span> (req.<span class="hljs-property">headers</span>.<span class="hljs-property">authorization</span> !== <span class="hljs-string">&#x27;mike&#x27;</span>) {
         <span class="hljs-keyword">throw</span> <span class="hljs-title class_">Ex</span>.<span class="hljs-title class_">Unauthorized</span>();
     }
+
     context.<span class="hljs-property">auth</span> = req.<span class="hljs-property">headers</span>.<span class="hljs-property">authorization</span>;
 });
 </code></pre>
-                    <p>In these examples the <code>json()</code> action sets the <code>&#39;Content-Type&#39;</code> header to <code>&#39;application/json&#39;</code>, and the <code>loggedIn()</code> action checks for an <code>&#39;authorization&#39;</code> header from the client. actions can be asyncronous and always run in sequence.</p>
+                    <p>In these examples the <code>setJson</code> action sets the <code>&#39;Content-Type&#39;</code> header to <code>&#39;application/json&#39;</code>, and the <code>loggedIn</code> action checks for an <code>&#39;authorization&#39;</code> header.</p>
                 </div>
             </main>
         </div>

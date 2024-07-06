@@ -180,84 +180,29 @@
                 <h1 class="text-white text-3xl mb-8"># Basic Concepts</h1>
                 <div class="prose prose-invert max-w-none pb-8">
                     <p>Understanding the core concepts of Kequapp will help you build applications efficiently and effectively. Here are the fundamental components that make up the Kequapp framework:</p>
-                    <h3>createApp()</h3>
-                    <p>The <code>createApp</code> function is the entry point of your application. It prepares your app to handle incoming requests and serves as the main event handler for Node&#39;s <code>createServer</code> method.</p>
-                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
-
-<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">createApp</span>({
-    <span class="hljs-attr">routes</span>: [
-        {
-            <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
-            <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/&#x27;</span>,
-            <span class="hljs-attr">actions</span>: [<span class="hljs-function">() =&gt;</span> <span class="hljs-string">&#x27;Hello world!&#x27;</span>]
-        }
-    ]
-});
-</code></pre>
-                    <h3>createBranch()</h3>
-                    <p>The <code>createBranch</code> function allows you to organize your routes and middleware into logical sections, or branches. Each branch can have its own set of routes, actions, error handlers, and renderers.</p>
-                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createBranch } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
-
-<span class="hljs-keyword">const</span> userBranch = <span class="hljs-title function_">createBranch</span>({
-    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users&#x27;</span>,
-    <span class="hljs-attr">routes</span>: [
-        {
-            <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
-            <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/&#x27;</span>,
-            <span class="hljs-attr">actions</span>: [<span class="hljs-function">() =&gt;</span> ({ <span class="hljs-attr">users</span>: [] })]
-        }
-    ]
-});
-</code></pre>
-                    <h3>createRoute()</h3>
-                    <p>Routes define the endpoints of your application. Each route specifies a method (<code>GET</code>, <code>POST</code>, etc.) and a URL. Routes are the building blocks of your application&#39;s API.</p>
-                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createRoute } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
-
-<span class="hljs-keyword">const</span> getUserRoute = <span class="hljs-title function_">createRoute</span>({
-    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
-    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users/:id&#x27;</span>,
-    <span class="hljs-attr">actions</span>: [<span class="hljs-function">(<span class="hljs-params">{ params }</span>) =&gt;</span> ({ <span class="hljs-attr">userId</span>: params.<span class="hljs-property">id</span> })]
-});
-</code></pre>
-                    <h3>createAction()</h3>
-                    <p>actions are functions that process requests. They can modify the request and response objects, perform authentication, validation, or any other processing needed. actions are executed in sequence.</p>
-                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createAction } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
-
-<span class="hljs-keyword">const</span> jsonHandle = <span class="hljs-title function_">createAction</span>(<span class="hljs-function">(<span class="hljs-params">{ res }</span>) =&gt;</span> {
-    res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;application/json&#x27;</span>);
-});
-</code></pre>
-                    <h3>createErrorHandler()</h3>
-                    <p>Error handlers are invoked when an action throws an exception. They turn errors into useful information that is sent to the client. You can create custom error handlers to provide better error responses.</p>
-                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createErrorHandler } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
-
-<span class="hljs-keyword">const</span> textErrorHandler = <span class="hljs-title function_">createErrorHandler</span>({
-    <span class="hljs-attr">contentType</span>: <span class="hljs-string">&#x27;text/*&#x27;</span>,
-    <span class="hljs-attr">action</span>: <span class="hljs-function">(<span class="hljs-params">ex, { url }</span>) =&gt;</span> <span class="hljs-string">`<span class="hljs-subst">${url.pathname}</span> <span class="hljs-subst">${ex.statusCode}</span>: <span class="hljs-subst">${ex.message}</span>`</span>
-});
-</code></pre>
-                    <h3>createRenderer()</h3>
-                    <p>Renderers are responsible for finalizing the response to the client. When an action returns a value, a renderer is invoked to send the response. You can create custom renderers for different content types.</p>
-                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createRenderer } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
-
-<span class="hljs-keyword">const</span> htmlRenderer = <span class="hljs-title function_">createRenderer</span>({
-    <span class="hljs-attr">contentType</span>: <span class="hljs-string">&#x27;text/html&#x27;</span>,
-    <span class="hljs-attr">action</span>: <span class="hljs-function">(<span class="hljs-params">payload, { req, res }</span>) =&gt;</span> {
-        <span class="hljs-keyword">const</span> html = <span class="hljs-title function_">myMarkupRenderer</span>(payload);
-
-        res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Content-Length&#x27;</span>, <span class="hljs-title class_">Buffer</span>.<span class="hljs-title function_">byteLength</span>(html));
-
-        <span class="hljs-comment">// finalize response</span>
-        <span class="hljs-keyword">if</span> (req.<span class="hljs-property">method</span> === <span class="hljs-string">&#x27;HEAD&#x27;</span>) {
-            res.<span class="hljs-title function_">end</span>();
-        } <span class="hljs-keyword">else</span> {
-            res.<span class="hljs-title function_">end</span>(html);
-        }
-    }
-});
-</code></pre>
+                    <h3>Content Type</h3>
+                    <p>The <code>&#39;Content-Type&#39;</code> header has a huge impact on the way your application responds. Based on this header Kequapp determines which error handler to use, and which renderer to use.</p>
+                    <p>This structure helps to ensure that the correct <code>&#39;Content-Type&#39;</code> is being returned whenever possible. A user expecting to see a <code>&#39;application/json&#39;</code> response instead of a <code>&#39;text/html&#39;</code> response will probably get one.</p>
+                    <p>Be sure to set your <code>&#39;Content-Type&#39;</code> header deliberately and make use of error handlers and renderers that are set up to take advantage of this.</p>
+                    <h3>Branches</h3>
+                    <p>The <code>createApp</code> function acts as the trunk of the tree where all behaviors derive. It is effectively a branch that stems from <code>&#39;/&#39;</code> and is a great place to add functionality that will effect the whole application.</p>
+                    <p>The app can have branches added using <code>createBranch</code> that also resolve to <code>&#39;/&#39;</code>, branches are not overridden. In the background all route endpoints are sorted and cataloged upon app startup.</p>
+                    <p>Therefore branching your application with different functionality and same urls is fine.</p>
+                    <p>Even if you have many branches with similar urls containing many routes with different bahavior, Kequapp will sort this out behind the scenes. Duplicate routes however will give you a warning. The final result of your app should contain routes that are unique either by url or method (<code>GET</code>, <code>POST</code>, etc.) so that there is no conflict.</p>
+                    <h3>Actions</h3>
+                    <p>The <code>createAction</code> function is simply a wrapper for a function, for cases where you find yourself writing functionality outside the scope of a branch. This is to provide types, but ultimately a function is an action.</p>
+                    <p>Actions are littered throughout your application&#39;s code base and define the vast majority of your application&#39;s behavior. These can be asyncronous and always run in sequence. They are used to check authorization, change response headers, render a response, and more. Most of your code will be wrapped in many different actions.</p>
+                    <p>It serves to break up your code and make it reusable. Each action comes with many bundle properties that make it easy to manage a web application.</p>
+                    <h3>CORS</h3>
+                    <p>Kequapp is the only JavaScript web framework we are aware of that correctly responds to <code>OPTIONS</code> requests. What&#39;s more, it still gives you additional control to suit your needs. This is an example of where the structure of this framework shines.</p>
+                    <p>Every request your application receives knows what matching routes exist at that url. This is what <code>OPTIONS</code> responses are supposed to communicate to the client.</p>
+                    <p>If you need CORS in your application you&#39;ll be able to handle those requests as intended.</p>
+                    <h3>Body</h3>
+                    <p>Many route endpoints do not even care about the body of a request. The <code>getBody</code> function is a helper tool that will retrieve that data. It is used inline and awaited in Kequapp, giving you a lot of control over what it is doing.</p>
+                    <p>If your application makes use of the body of requests in a unique way this framework has you covered. From field validation, processing and formatting incoming data, to allowing you to do it all yourself. Take advantage of the speed gained from not needing to parse the body of a request up front.</p>
+                    <h3>You&#39;re all set</h3>
                     <p>Understanding these core concepts will help you build robust and scalable applications with Kequapp. As you explore the documentation, you&#39;ll find more details and examples to guide you through each feature.</p>
-                    <p>Happy coding!</p>
+                    <p>Thank you for trying our framework we hope it&#39;s as enjoyable for you as it is for myself!</p>
                 </div>
             </main>
         </div>

@@ -217,7 +217,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p>A route must specify a method (<code>&#39;GET&#39;</code>, <code>&#39;POST&#39;</code>, etc.) and a url. The url is a pathname that the route should respond to and must always start with <code>&#39;/&#39;</code>.</p>
+                    <p>Routes define the endpoints of your application.</p>
+                    <p>The <code>createRoute</code> function must specify a method (<code>GET</code>, <code>POST</code>, etc.) and a url. The url is a pathname that the route should respond to and must always start with <code>&#39;/&#39;</code>. Actions are a list of functions that should be executed in order when the endpoint is accessed.</p>
                     <h3>Example</h3>
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">createRoute</span>({
     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,

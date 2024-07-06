@@ -179,11 +179,18 @@
                 <!-- Main content -->
                 <h1 class="text-white text-3xl mb-8"># Hello World</h1>
                 <div class="prose prose-invert max-w-none pb-8">
-                    <p>Here&#39;s a simple example to get you started with Kequapp:</p>
+                    <h3>server.js</h3>
                     <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createServer } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;http&#x27;</span>;
-<span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
+<span class="hljs-keyword">import</span> app <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./app&#x27;</span>;
 
-<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">createApp</span>({
+<span class="hljs-title function_">createServer</span>(app).<span class="hljs-title function_">listen</span>(<span class="hljs-number">4000</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Server running at http://localhost:4000&#x27;</span>);
+});
+</code></pre>
+                    <h3>app.js</h3>
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">createApp</span>({
     <span class="hljs-attr">routes</span>: [
         {
             <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
@@ -192,12 +199,10 @@
         }
     ]
 });
-
-<span class="hljs-title function_">createServer</span>(app).<span class="hljs-title function_">listen</span>(<span class="hljs-number">4000</span>, <span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Server running at http://localhost:4000&#x27;</span>);
-});
 </code></pre>
-                    <p>This example responds to all &#39;GET&#39; and &#39;HEAD&#39; requests made to &#39;/&#39;, otherwise a 404 Not Found error will be thrown. The framework comes with a built-in error handler and some renderers, so for now, this is all we need.</p>
+                    <h3>Outcome</h3>
+                    <p>This example responds to all <code>GET</code> and <code>HEAD</code> requests made to <code>&#39;/&#39;</code> at the base of your application, otherwise a <code>404 Not Found</code> error will be thrown.</p>
+                    <p>Kequapp comes with a built-in error handler and some renderers, so for now this is all you need.</p>
                 </div>
             </main>
         </div>

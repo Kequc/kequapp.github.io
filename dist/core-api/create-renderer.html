@@ -197,13 +197,14 @@
                             </tr>
                             <tr>
                                 <td><strong>action *</strong></td>
-                                <td><em>Handler</em></td>
+                                <td><em>Action</em></td>
                                 <td></td>
                             </tr>
                         </tbody>
                     </table>
-                    <p>An appropriate renderer is invoked whenever an action returns a value apart from undefined. We may return a value to invoke a renderer or finalize the response ourselves directly, which skips this step.</p>
-                    <p>Here is a simple example of an HTML renderer:</p>
+                    <p>Renderers are responsible for finalizing the response to the client. When an action returns a value, a renderer is invoked to send the response. You can create custom renderers for different content types.</p>
+                    <p>The <code>createRenderer</code> function must specify a content type (<code>&#39;application/json&#39;</code>, <code>&#39;text/html&#39;</code>, etc.) and an action to manipulate the information into a response.</p>
+                    <p>The first parameter of an renderer is the value that was returned. Here is a simple example of an HTML renderer:</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">createRenderer</span>({
     <span class="hljs-attr">contentType</span>: <span class="hljs-string">&#x27;text/html&#x27;</span>,
     <span class="hljs-attr">action</span>: <span class="hljs-function">(<span class="hljs-params">payload, { req, res }</span>) =&gt;</span> {
@@ -220,7 +221,8 @@
     }
 });
 </code></pre>
-                    <p>For good examples of how to write a renderer see this repo&#39;s /src/built-in directory.</p>
+                    <p>For good examples of how to write a renderer see this repo&#39;s <a href="https://github.com/Kequc/kequapp/tree/main/src/built-in" target="_blank">/src/built-in</a> directory.</p>
+                    <p>Kequapp comes with a renderer for <code>&#39;application/json&#39;</code> and <code>&#39;text/*&#39;</code>, however these can be overriden by writting renderers of your own with those content types.</p>
                 </div>
             </main>
         </div>

@@ -181,30 +181,51 @@
                 <div class="prose prose-invert max-w-none pb-8">
                     <pre><code class="hljs language-javascript"><span class="hljs-keyword">import</span> { staticDirectory } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kequapp&#x27;</span>;
 </code></pre>
-                    <p>Pairs a wild parameter with a static directory relative to the root of our project.</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>key</th>
+                                <th>description</th>
+                                <th>default</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>location *</strong></td>
+                                <td><em>Directory</em></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><strong>contentTypes</strong></td>
+                                <td><em>Content types</em></td>
+                                <td><code>{}</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>indexes</strong></td>
+                                <td><em>File names</em></td>
+                                <td><code>[]</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>The <code>staticDirectory</code> function creates an action intended to pair a <code>&#39;wild&#39;</code> parameter with a static directory relative to the root of our project. Therefore the <code>url</code> should end with <code>&#39;/**&#39;</code>.</p>
+                    <p>An array of <code>indexes</code>, for example <code>[&#39;index.html&#39;]</code> may be provided to resolve when the request points at a directory.</p>
+                    <p>A <code>&#39;Content-Type&#39;</code> header is guessed based on every asset&#39;s file extension. If there are assets in the directory with unusual file extensions, then additional <code>contentTypes</code> may be provided.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> staticAssets = <span class="hljs-title function_">staticDirectory</span>({
     <span class="hljs-attr">location</span>: <span class="hljs-string">&#x27;/my-assets-dir&#x27;</span>,
     <span class="hljs-attr">contentTypes</span>: {
-        <span class="hljs-string">&#x27;.3gp&#x27;</span>: <span class="hljs-string">&#x27;audio/3gpp&#x27;</span>
-    }
+        <span class="hljs-string">&#x27;.3gp&#x27;</span>: <span class="hljs-string">&#x27;audio/3gpp&#x27;</span>,
+    },
+    <span class="hljs-attr">indexes</span>: [<span class="hljs-string">&#x27;index.html&#x27;</span>],
 });
 
-<span class="hljs-title function_">createApp</span>({
-    <span class="hljs-attr">routes</span>: [
-        {
-            <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
-            <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/assets/**&#x27;</span>,
-            <span class="hljs-attr">actions</span>: [staticAssets]
-        }
-    ]
+<span class="hljs-title function_">createRoute</span>({
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/assets/**&#x27;</span>,
+    <span class="hljs-attr">actions</span>: [staticAssets],
 });
 </code></pre>
-                    <p>The url should end with &#39;/**&#39; capturing all possible paths.</p>
-                    <p>A &#39;Content-Type&#39; header is guessed based on every asset&#39;s file extension. If there are assets in the directory with unusual file extensions, then additional contentTypes may be provided. Exclusions can be provided if we want to ignore certain requests, or headers for assets can be set by using an action.</p>
-                    <p>An array of index files, for example [&#39;index.html&#39;], may be provided to resolve when the location is a directory.</p>
-                    <pre><code class="hljs language-javascript"><span class="hljs-comment">// staticDirectory</span>
-
-<span class="hljs-keyword">const</span> prepare = <span class="hljs-title function_">createAction</span>(<span class="hljs-function">(<span class="hljs-params">{ res, params }</span>) =&gt;</span> {
+                    <p>Additional control can be obtained by using an action.</p>
+                    <pre><code class="hljs language-javascript"><span class="hljs-keyword">const</span> prepare = <span class="hljs-title function_">createAction</span>(<span class="hljs-function">(<span class="hljs-params">{ res, params }</span>) =&gt;</span> {
     res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Cache-Control&#x27;</span>, <span class="hljs-string">&#x27;max-age=604800&#x27;</span>);
 
     <span class="hljs-keyword">if</span> (params.<span class="hljs-property">wild</span> === <span class="hljs-string">&#x27;/secret.txt&#x27;</span>) {
@@ -212,14 +233,10 @@
     }
 });
 
-<span class="hljs-title function_">createApp</span>({
-    <span class="hljs-attr">routes</span>: [
-        {
-            <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
-            <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/assets/**&#x27;</span>,
-            <span class="hljs-attr">actions</span>: [prepare, staticAssets]
-        }
-    ]
+<span class="hljs-title function_">createRoute</span>({
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/assets/**&#x27;</span>,
+    <span class="hljs-attr">actions</span>: [prepare, staticAssets],
 });
 </code></pre>
                 </div>

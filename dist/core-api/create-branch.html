@@ -232,13 +232,14 @@
                             </tr>
                         </tbody>
                     </table>
+                    <p>The <code>createBranch</code> function allows you to organize your routes into logical sections, or branches. Each branch can have its own set of routes, actions, error handlers, and renderers.</p>
                     <p>A branch of the application will distribute the given options, actions, error handlers, and renderers through a section of branches and routes.</p>
                     <h3>Example</h3>
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">createBranch</span>({
     <span class="hljs-attr">branches</span>: [
         {
             <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/api/users&#x27;</span>,
-            <span class="hljs-attr">actions</span>: [json],
+            <span class="hljs-attr">actions</span>: [setJson],
             <span class="hljs-attr">routes</span>: [
                 {
                     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
