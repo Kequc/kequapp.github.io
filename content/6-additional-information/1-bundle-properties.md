@@ -42,13 +42,13 @@ Maybe authentication details, a user object, or any data that's useful in other 
 
 ### params
 
-When defining a route you may specify parameters to extract by prefixing a colon `':'` character in the url. If you specifid a route such as `'/users/:userId'` it will have a `params` item called `'userId'`. Use a double asterisk `'/**'` to accept anything for the remainder of the url, it will have a `params` item called `'wild'`.
+When defining a route you may specify parameters to extract by prefixing a colon `':'` character in the url. If you specified a route such as `'/users/:userId'` it will have a `params` item called `'userId'`. Use a double asterisk `'/**'` to accept anything for the remainder of the url, it will have a `params` item called `'wild'`.
 
 Param values are always a string.
 
 ### cookies
 
-Includes helpers for `get()`, `set()`, and `remove()`. The `set()` method takes an optional third parameter with `expires`, `maxAge`, `domain`, `path`, `secure`, `httpOnly`, `partitioned`, and `sameSite`.
+Includes helpers for `get`, `set`, and `remove`. The `set` method takes an optional third parameter with `expires`, `maxAge`, `domain`, `path`, `secure`, `httpOnly`, `partitioned`, and `sameSite`.
 
 ```javascript
 createAction(({ cookies }) => {
