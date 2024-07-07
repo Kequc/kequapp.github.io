@@ -19,7 +19,7 @@
                 </a>
                 <div class="text-white space-x-3">
                     <span class="font-mono">\ `hek-yü-ap \</span>
-                    <span class="bg-green-700 px-2 py-1 rounded text-sm">v0.8.0</span>
+                    <span class="bg-green-700 px-2 py-1 rounded text-sm">v0.8.1</span>
                 </div>
             </div>
             <div class="flex items-center space-x-6">
@@ -96,7 +96,7 @@
                 <h1 class="text-white text-3xl mb-8"># getBody</h1>
                 <div class="prose prose-invert max-w-none pb-8">
                     <p>Node delivers the body of a request in chunks.</p>
-                    <p>It is not necessary to wait for the request to finish before we begin processing it. In most cases, you just want the data and therefore a helper method <code>getBody</code> is provided which you may use to await body from the completed request.</p>
+                    <p>It is not necessary to wait for the request to finish before processing it. In most cases, you just want the data and therefore a helper method <code>getBody</code> is provided which you may use to await body from the completed request.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">createRoute</span>({
     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
     <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users&#x27;</span>,
@@ -181,7 +181,7 @@
                     <p>Disable body normalization with either <code>raw</code> or <code>skipNormalize</code>.</p>
                     <h3>arrays</h3>
                     <p>The provided list of fields are converted into arrays.</p>
-                    <p>Fields that are not specified will return only the first value. This is because the framework only knows that a field is an array when it receives more than one value for a given name from the client. It would be inconvenient if parameters are sometimes arrays, and therefore we are explicit.</p>
+                    <p>Fields that are not specified will return only the first value. This is because the framework only knows that a field is an array when it receives more than one value for a given name from the client. It would be inconvenient if parameters are sometimes arrays, and therefore instead are explicit.</p>
                     <pre><code class="hljs language-javascript"><span class="hljs-title function_">createRoute</span>({
     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
     <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users&#x27;</span>,
