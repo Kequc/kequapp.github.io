@@ -2,7 +2,7 @@
 
 Node delivers the body of a request in chunks.
 
-It is not necessary to wait for the request to finish before we begin processing it. In most cases, you just want the data and therefore a helper method `getBody` is provided which you may use to await body from the completed request.
+It is not necessary to wait for the request to finish before processing it. In most cases, you just want the data and therefore a helper method `getBody` is provided which you may use to await body from the completed request.
 
 ```javascript
 createRoute({
@@ -107,7 +107,7 @@ Disable body normalization with either `raw` or `skipNormalize`.
 
 The provided list of fields are converted into arrays.
 
-Fields that are not specified will return only the first value. This is because the framework only knows that a field is an array when it receives more than one value for a given name from the client. It would be inconvenient if parameters are sometimes arrays, and therefore we are explicit.
+Fields that are not specified will return only the first value. This is because the framework only knows that a field is an array when it receives more than one value for a given name from the client. It would be inconvenient if parameters are sometimes arrays, and therefore instead are explicit.
 
 ```javascript
 createRoute({
