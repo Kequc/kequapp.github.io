@@ -2,7 +2,7 @@
 
 Node delivers the body of a request in chunks.
 
-It is not necessary to wait for the request to finish before we begin processing it. In most cases, you just want the data and therefore a helper method `getBody` is provided which you may use to await body parameters from the completed request.
+It is not necessary to wait for the request to finish before we begin processing it. In most cases, you just want the data and therefore a helper method `getBody` is provided which you may use to await body from the completed request.
 
 ```javascript
 createRoute({
