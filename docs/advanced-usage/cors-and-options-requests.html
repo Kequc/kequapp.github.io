@@ -101,9 +101,9 @@
     <span class="hljs-attr">routes</span>: [
         {
             <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;OPTIONS&#x27;</span>,
-            <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/**&#x27;</span>
-        }
-    ]
+            <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/**&#x27;</span>,
+        },
+    ],
 });
 </code></pre>
                     <p>The framework automatically attaches four additional headers to <code>OPTIONS</code> responses. <code>&#39;Valid&#39;</code> and <code>&#39;Access-Control-Allow-Methods&#39;</code> will correctly identify all methods available at the requested url. <code>&#39;Access-Control-Allow-Headers&#39;</code> will return headers that the client specified. <code>&#39;Content-Length&#39;</code> will be <code>0</code>.</p>
@@ -116,9 +116,9 @@
             <span class="hljs-attr">actions</span>: [<span class="hljs-function">(<span class="hljs-params">{ res }</span>) =&gt;</span> {
                 res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Access-Control-Max-Age&#x27;</span>, <span class="hljs-number">86400</span>);
                 res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Vary&#x27;</span>, <span class="hljs-string">&#x27;Access-Control-Request-Headers&#x27;</span>);
-            }]
-        }
-    ]
+            }],
+        },
+    ],
 });
 </code></pre>
                     <p>As <code>OPTIONS</code> responses do not need to include a body, you can safely leave the route like this without rendering.</p>
@@ -130,7 +130,7 @@
 });
 
 <span class="hljs-title function_">createApp</span>({
-    <span class="hljs-attr">actions</span>: [strictCors]
+    <span class="hljs-attr">actions</span>: [strictCors],
 });
 </code></pre>
                     <p>This would cause all responses to include <code>&#39;Access-Control-Allow-Origin&#39;</code> but only if there is an <code>OPTIONS</code> route; one should be included for the mechanism to work correctly.</p>

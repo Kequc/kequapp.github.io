@@ -105,7 +105,7 @@
         <span class="hljs-keyword">if</span> (req.<span class="hljs-property">method</span> === <span class="hljs-string">&#x27;HEAD&#x27;</span>) {
             <span class="hljs-comment">// head request</span>
         }
-    }]
+    }],
 });
 </code></pre>
                     <p>In most cases, <code>HEAD</code> and <code>GET</code> requests should run the same code, so you have nothing to worry about. Detection of <code>HEAD</code> requests is already handled by the renderers that are built-in to the framework. Largely what will happen is no body will be sent to the client, which is what a <code>HEAD</code> request wanted.</p>

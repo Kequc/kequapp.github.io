@@ -24,7 +24,7 @@ The `actions` parameter is a list of functions that are executed in order when t
 createRoute({
     method: 'POST',
     url: '/admin/users',
-    actions: [loggedIn, () => 'User created!']
+    actions: [loggedIn, () => 'User created!'],
 });
 ```
 

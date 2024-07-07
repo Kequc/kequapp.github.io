@@ -31,22 +31,22 @@ createBranch({
                 {
                     method: 'GET',
                     url: '/',
-                    actions: [() => ({ result: [] })]
+                    actions: [() => ({ result: [] })],
                 },
                 {
                     method: 'GET',
                     url: '/:id',
-                    actions: [({ params }) => ({ userId: params.id })]
-                }
-            ]
-        }
+                    actions: [({ params }) => ({ userId: params.id })],
+                },
+            ],
+        },
     ],
     routes: [
         {
             method: 'GET',
             url: '/admin/dashboard',
-            actions: [loggedIn, ({ context }) => `Hello admin ${context.auth}`]
-        }
-    ]
+            actions: [loggedIn, ({ context }) => `Hello admin ${context.auth}`],
+        },
+    ],
 });
 ```

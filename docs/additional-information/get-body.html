@@ -108,7 +108,7 @@
         <span class="hljs-comment">// }</span>
 
         <span class="hljs-keyword">return</span> <span class="hljs-string">`User creation <span class="hljs-subst">${body.name}</span>!`</span>;
-    }]
+    }],
 });
 </code></pre>
                     <p>It takes an options object which can be used to parse and normalize a client request into useful data in a large assortment of different ways.</p>
@@ -135,7 +135,7 @@
         <span class="hljs-comment">// }]</span>
 
         <span class="hljs-keyword">return</span> <span class="hljs-string">`User creation <span class="hljs-subst">${body.name}</span>!`</span>;
-    }]
+    }],
 });
 </code></pre>
                     <h3>raw</h3>
@@ -149,7 +149,7 @@
         <span class="hljs-comment">// data ~= Buffer &lt;...&gt;</span>
 
         <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Image received!&#x27;</span>;
-    }]
+    }],
 });
 </code></pre>
                     <p>When combined with <code>multipart</code>, the body is parsed into an array of separate buffers with their respective headers.</p>
@@ -173,7 +173,7 @@
         <span class="hljs-comment">// }]</span>
 
         <span class="hljs-keyword">return</span> <span class="hljs-string">`User creation <span class="hljs-subst">${parts[<span class="hljs-number">0</span>].data.toString()}</span>!`</span>;
-    }]
+    }],
 });
 </code></pre>
                     <h3>skipNormalize</h3>
@@ -187,7 +187,7 @@
     <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/users&#x27;</span>,
     <span class="hljs-attr">actions</span>: [<span class="hljs-keyword">async</span> ({ getBody }) =&gt; {
         <span class="hljs-keyword">const</span> body = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getBody</span>({
-            <span class="hljs-attr">arrays</span>: [<span class="hljs-string">&#x27;ownedPets&#x27;</span>]
+            <span class="hljs-attr">arrays</span>: [<span class="hljs-string">&#x27;ownedPets&#x27;</span>],
         });
 
         <span class="hljs-comment">// body ~= {</span>
@@ -195,7 +195,7 @@
         <span class="hljs-comment">//     age: &#x27;23&#x27;,</span>
         <span class="hljs-comment">//     name: &#x27;April&#x27;</span>
         <span class="hljs-comment">// }</span>
-    }]
+    }],
 });
 </code></pre>
                     <h3>required</h3>
@@ -228,7 +228,7 @@
                 <span class="hljs-keyword">if</span> (result.<span class="hljs-property">name</span>.<span class="hljs-property">length</span> &lt; <span class="hljs-number">3</span>) {
                     <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Name is too short&#x27;</span>;
                 }
-            }
+            },
         });
 
         <span class="hljs-comment">// body ~= {</span>
@@ -236,7 +236,7 @@
         <span class="hljs-comment">//     age: 23,</span>
         <span class="hljs-comment">//     name: &#x27;April&#x27;</span>
         <span class="hljs-comment">// }</span>
-    }]
+    }],
 });
 </code></pre>
                     <p>You know it is safe to use <code>result.ownedPets.length</code> in this example because it is listed as an <code>arrays</code> field and therefore certain to be an array. <code>result.name</code> is also safe to use because it is listed as a <code>required</code> field and therefore certain to exist.</p>

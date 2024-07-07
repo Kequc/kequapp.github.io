@@ -16,8 +16,8 @@ const app = createApp({
         {
             method: 'GET',
             url: '/',
-            actions: [() => 'Hello world!']
-        }
-    ]
+            actions: [() => 'Hello world!'],
+        },
+    ],
 });
 ```

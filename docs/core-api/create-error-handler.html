@@ -126,7 +126,7 @@
     <span class="hljs-attr">contentType</span>: <span class="hljs-string">&#x27;text/*&#x27;</span>,
     <span class="hljs-attr">action</span>: <span class="hljs-function">(<span class="hljs-params">ex, { url }</span>) =&gt;</span> {
         <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${url.pathname}</span> <span class="hljs-subst">${ex.statusCode}</span>: <span class="hljs-subst">${ex.message}</span>`</span>;
-    }
+    },
 });
 </code></pre>
                     <p>Errors thrown within an error handler or the renderer it invokes will cause a fatal exception and an empty <code>body</code> will be delivered to the client.</p>

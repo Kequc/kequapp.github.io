@@ -34,7 +34,7 @@ createRoute({
         return {
             users: [{ name: 'April' }, { name: 'Leo' }]
         };
-    }]
+    }],
 });
 ```
 

@@ -16,7 +16,7 @@ createRoute({
         // }
 
         return `User creation ${body.name}!`;
-    }]
+    }],
 });
 ```
 
@@ -48,7 +48,7 @@ createRoute({
         // }]
 
         return `User creation ${body.name}!`;
-    }]
+    }],
 });
 ```
 
@@ -66,7 +66,7 @@ createRoute({
         // data ~= Buffer <...>
 
         return 'Image received!';
-    }]
+    }],
 });
 ```
 
@@ -93,7 +93,7 @@ createRoute({
         // }]
 
         return `User creation ${parts[0].data.toString()}!`;
-    }]
+    }],
 });
 ```
 
@@ -115,7 +115,7 @@ createRoute({
     url: '/users',
     actions: [async ({ getBody }) => {
         const body = await getBody({
-            arrays: ['ownedPets']
+            arrays: ['ownedPets'],
         });
 
         // body ~= {
@@ -123,7 +123,7 @@ createRoute({
         //     age: '23',
         //     name: 'April'
         // }
-    }]
+    }],
 });
 ```
 
@@ -167,7 +167,7 @@ createRoute({
                 if (result.name.length < 3) {
                     return 'Name is too short';
                 }
-            }
+            },
         });
 
         // body ~= {
@@ -175,7 +175,7 @@ createRoute({
         //     age: 23,
         //     name: 'April'
         // }
-    }]
+    }],
 });
 ```
 

@@ -160,23 +160,23 @@
                 {
                     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
                     <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/&#x27;</span>,
-                    <span class="hljs-attr">actions</span>: [<span class="hljs-function">() =&gt;</span> ({ <span class="hljs-attr">result</span>: [] })]
+                    <span class="hljs-attr">actions</span>: [<span class="hljs-function">() =&gt;</span> ({ <span class="hljs-attr">result</span>: [] })],
                 },
                 {
                     <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
                     <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/:id&#x27;</span>,
-                    <span class="hljs-attr">actions</span>: [<span class="hljs-function">(<span class="hljs-params">{ params }</span>) =&gt;</span> ({ <span class="hljs-attr">userId</span>: params.<span class="hljs-property">id</span> })]
-                }
-            ]
-        }
+                    <span class="hljs-attr">actions</span>: [<span class="hljs-function">(<span class="hljs-params">{ params }</span>) =&gt;</span> ({ <span class="hljs-attr">userId</span>: params.<span class="hljs-property">id</span> })],
+                },
+            ],
+        },
     ],
     <span class="hljs-attr">routes</span>: [
         {
             <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
             <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/admin/dashboard&#x27;</span>,
-            <span class="hljs-attr">actions</span>: [loggedIn, <span class="hljs-function">(<span class="hljs-params">{ context }</span>) =&gt;</span> <span class="hljs-string">`Hello admin <span class="hljs-subst">${context.auth}</span>`</span>]
-        }
-    ]
+            <span class="hljs-attr">actions</span>: [loggedIn, <span class="hljs-function">(<span class="hljs-params">{ context }</span>) =&gt;</span> <span class="hljs-string">`Hello admin <span class="hljs-subst">${context.auth}</span>`</span>],
+        },
+    ],
 });
 </code></pre>
                 </div>
