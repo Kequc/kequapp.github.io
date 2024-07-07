@@ -9,9 +9,9 @@ createApp({
     routes: [
         {
             method: 'OPTIONS',
-            url: '/**'
-        }
-    ]
+            url: '/**',
+        },
+    ],
 });
 ```
 
@@ -28,9 +28,9 @@ createApp({
             actions: [({ res }) => {
                 res.setHeader('Access-Control-Max-Age', 86400);
                 res.setHeader('Vary', 'Access-Control-Request-Headers');
-            }]
-        }
-    ]
+            }],
+        },
+    ],
 });
 ```
 
@@ -46,7 +46,7 @@ const strictCors = createAction(({ res, methods }) => {
 });
 
 createApp({
-    actions: [strictCors]
+    actions: [strictCors],
 });
 ```
 

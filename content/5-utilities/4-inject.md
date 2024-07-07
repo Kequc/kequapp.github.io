@@ -33,7 +33,7 @@ const { getResponse } = inject(app, {
     method: 'POST',
     url: '/users',
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
     },
     body: '{ "name": "April" }',
 });

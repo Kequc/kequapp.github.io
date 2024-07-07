@@ -26,7 +26,7 @@ createRoute({
 
         // page ~= '2'
         // categories ~= ['ac', 'hottub']
-    }]
+    }],
 });
 ```
 

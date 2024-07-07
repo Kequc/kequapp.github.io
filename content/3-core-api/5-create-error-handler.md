@@ -22,7 +22,7 @@ createErrorHandler({
     contentType: 'text/*',
     action: (ex, { url }) => {
         return `${url.pathname} ${ex.statusCode}: ${ex.message}`;
-    }
+    },
 });
 ```
 

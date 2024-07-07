@@ -14,7 +14,7 @@ createRoute({
         if (req.method === 'HEAD') {
             // head request
         }
-    }]
+    }],
 });
 ```
 

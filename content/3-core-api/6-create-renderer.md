@@ -29,7 +29,7 @@ createRenderer({
         } else {
             res.end(html);
         }
-    }
+    },
 });
 ```
 
