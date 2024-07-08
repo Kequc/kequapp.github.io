@@ -66,6 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
     searchResults.className = 'absolute left-0 right-0 mt-2 bg-gray-800 rounded-lg shadow-lg overflow-hidden z-20 hidden';
     searchContainer.appendChild(searchResults);
 
+    let selectedIndex = -1;
+
     function updateSearchUI() {
         clearButton.classList.toggle('hidden', searchInput.value.length === 0);
     }
@@ -75,6 +77,18 @@ document.addEventListener('DOMContentLoaded', () => {
         searchResults.classList.add('hidden');
         updateSearchUI();
         searchInput.blur();
+        selectedIndex = -1;
+    }
+
+    function updateSelectedResult() {
+        const results = searchResults.querySelectorAll('a');
+        results.forEach((result, index) => {
+            if (index === selectedIndex) {
+                result.classList.add('bg-gray-700');
+            } else {
+                result.classList.remove('bg-gray-700');
+            }
+        });
     }
 
     searchInput.addEventListener('input', async (e) => {
@@ -88,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         searchResults.innerHTML = results.map(result => `
-            <a href="${result.url}" group class="block p-4 hover:bg-gray-700 transition-colors duration-150">
+            <a href="${result.url}" class="block p-4 hover:bg-gray-700 transition-colors duration-150">
                 <div class="font-medium text-green-400 group-hover:underline">
                     ${result.title}
                 </div>
@@ -97,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
 
         searchResults.classList.remove('hidden');
+        selectedIndex = -1;
     });
 
     clearButton.addEventListener('click', () => {
@@ -110,8 +125,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     searchInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            clearSearch();
+        const results = searchResults.querySelectorAll('a');
+        const resultsCount = results.length;
+
+        switch (e.key) {
+            case 'ArrowDown':
+                e.preventDefault();
+                selectedIndex = (selectedIndex + 1) % resultsCount;
+                updateSelectedResult();
+                break;
+            case 'ArrowUp':
+                e.preventDefault();
+                selectedIndex = (selectedIndex - 1 + resultsCount) % resultsCount;
+                updateSelectedResult();
+                break;
+            case 'Enter':
+                e.preventDefault();
+                if (selectedIndex >= 0 && selectedIndex < resultsCount) {
+                    results[selectedIndex].click();
+                }
+                break;
+            case 'Escape':
+                clearSearch();
+                break;
         }
     });
 
